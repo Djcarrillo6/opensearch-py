@@ -24,13 +24,27 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import NamespacedClient, query_params
 
 
 class RemoteClient(NamespacedClient):
     @query_params()
-    def info(self, params=None, headers=None):
+    def info(
+        self,
+        *,
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         return self.transport.perform_request(
             "GET", "/_remote/info", params=params, headers=headers
         )

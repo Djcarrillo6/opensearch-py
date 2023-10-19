@@ -7,6 +7,8 @@
 # Modifications Copyright OpenSearch Contributors. See
 # GitHub history for details.
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
+
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
@@ -14,7 +16,9 @@ class SecurityClient(NamespacedClient):
     from ._patch import health_check, update_audit_config
 
     @query_params()
-    async def get_account_details(self, params=None, headers=None):
+    async def get_account_details(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Returns account details for the current user.
         """
@@ -26,7 +30,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def change_password(self, body, params=None, headers=None):
+    async def change_password(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Changes the password for the current user.
         """
@@ -42,7 +51,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_action_group(self, action_group, params=None, headers=None):
+    async def get_action_group(
+        self,
+        action_group: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves one action group.
         """
@@ -59,7 +73,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_action_groups(self, params=None, headers=None):
+    async def get_action_groups(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves all action groups.
         """
@@ -71,7 +87,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_action_group(self, action_group, params=None, headers=None):
+    async def delete_action_group(
+        self,
+        action_group: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes the specified action group.
         """
@@ -88,7 +109,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def create_action_group(self, action_group, body, params=None, headers=None):
+    async def create_action_group(
+        self,
+        action_group: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or replaces the specified action group.
         """
@@ -105,7 +132,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_action_group(self, action_group, body, params=None, headers=None):
+    async def patch_action_group(
+        self,
+        action_group: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Updates individual attributes of an action group.
         """
@@ -122,7 +155,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_action_groups(self, body, params=None, headers=None):
+    async def patch_action_groups(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates, updates, or deletes multiple action groups in a single call.
         """
@@ -138,7 +176,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_user(self, username, params=None, headers=None):
+    async def get_user(
+        self,
+        username: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves one user.
         """
@@ -153,7 +196,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_users(self, params=None, headers=None):
+    async def get_users(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves all users.
         """
@@ -165,7 +210,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_user(self, username, params=None, headers=None):
+    async def delete_user(
+        self,
+        username: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes the specified user.
         """
@@ -180,7 +230,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def create_user(self, username, body, params=None, headers=None):
+    async def create_user(
+        self,
+        username: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or replaces the specified user.
         """
@@ -197,7 +253,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_user(self, username, body, params=None, headers=None):
+    async def patch_user(
+        self,
+        username: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Updates individual attributes of an internal user.
         """
@@ -214,7 +276,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_users(self, body, params=None, headers=None):
+    async def patch_users(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates, updates, or deletes multiple internal users in a single call.
         """
@@ -230,7 +297,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_role(self, role, params=None, headers=None):
+    async def get_role(
+        self,
+        role: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves one role.
         """
@@ -245,7 +317,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_roles(self, params=None, headers=None):
+    async def get_roles(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves all roles.
         """
@@ -257,7 +331,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_role(self, role, params=None, headers=None):
+    async def delete_role(
+        self,
+        role: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes the specified role.
         """
@@ -272,7 +351,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def create_role(self, role, body, params=None, headers=None):
+    async def create_role(
+        self,
+        role: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or replaces the specified role.
         """
@@ -289,7 +374,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_role(self, role, body, params=None, headers=None):
+    async def patch_role(
+        self,
+        role: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Updates individual attributes of a role.
         """
@@ -306,7 +397,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_roles(self, body, params=None, headers=None):
+    async def patch_roles(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates, updates, or deletes multiple roles in a single call.
         """
@@ -322,7 +418,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_role_mapping(self, role, params=None, headers=None):
+    async def get_role_mapping(
+        self,
+        role: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves one role mapping.
         """
@@ -337,7 +438,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_role_mappings(self, params=None, headers=None):
+    async def get_role_mappings(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves all role mappings.
         """
@@ -349,7 +452,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_role_mapping(self, role, params=None, headers=None):
+    async def delete_role_mapping(
+        self,
+        role: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes the specified role mapping.
         """
@@ -364,7 +472,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def create_role_mapping(self, role, body, params=None, headers=None):
+    async def create_role_mapping(
+        self,
+        role: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or replaces the specified role mapping.
         """
@@ -381,7 +495,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_role_mapping(self, role, body, params=None, headers=None):
+    async def patch_role_mapping(
+        self,
+        role: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Updates individual attributes of a role mapping.
         """
@@ -398,7 +518,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_role_mappings(self, body, params=None, headers=None):
+    async def patch_role_mappings(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or updates multiple role mappings in a single call.
         """
@@ -414,7 +539,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_tenant(self, tenant, params=None, headers=None):
+    async def get_tenant(
+        self,
+        tenant: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves one tenant.
         """
@@ -429,7 +559,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_tenants(self, params=None, headers=None):
+    async def get_tenants(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves all tenants.
         """
@@ -441,7 +573,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_tenant(self, tenant, params=None, headers=None):
+    async def delete_tenant(
+        self,
+        tenant: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes the specified tenant.
         """
@@ -456,7 +593,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def create_tenant(self, tenant, body, params=None, headers=None):
+    async def create_tenant(
+        self,
+        tenant: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Creates or replaces the specified tenant.
         """
@@ -473,7 +616,13 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_tenant(self, tenant, body, params=None, headers=None):
+    async def patch_tenant(
+        self,
+        tenant: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Add, delete, or modify a single tenant.
         """
@@ -490,7 +639,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_tenants(self, body, params=None, headers=None):
+    async def patch_tenants(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Add, delete, or modify multiple tenants in a single call.
         """
@@ -506,7 +660,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_configuration(self, params=None, headers=None):
+    async def get_configuration(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves the current Security plugin configuration in JSON format.
         """
@@ -518,7 +674,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def update_configuration(self, body, params=None, headers=None):
+    async def update_configuration(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves the current Security plugin configuration in JSON format.
         """
@@ -534,7 +695,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_configuration(self, body, params=None, headers=None):
+    async def patch_configuration(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Updates the existing configuration using the REST API.
         """
@@ -551,8 +717,11 @@ class SecurityClient(NamespacedClient):
 
     @query_params()
     async def get_distinguished_names(
-        self, cluster_name=None, params=None, headers=None
-    ):
+        self,
+        cluster_name: Union[Any, None],
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Retrieves all distinguished names in the allow list.
         """
@@ -565,8 +734,12 @@ class SecurityClient(NamespacedClient):
 
     @query_params()
     async def update_distinguished_names(
-        self, cluster_name, body, params=None, headers=None
-    ):
+        self,
+        cluster_name: Any,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Adds or updates the specified distinguished names in the cluster's or node's allow list.
         """
@@ -583,7 +756,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_distinguished_names(self, cluster_name, params=None, headers=None):
+    async def delete_distinguished_names(
+        self,
+        cluster_name: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         Deletes all distinguished names in the specified cluster's or node's allow list.
         """
@@ -600,7 +778,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_certificates(self, params=None, headers=None):
+    async def get_certificates(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Retrieves the cluster's security certificates.
         """
@@ -612,7 +792,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def reload_transport_certificates(self, params=None, headers=None):
+    async def reload_transport_certificates(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Reloads SSL certificates that are about to expire without restarting the OpenSearch node.
         """
@@ -626,7 +808,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def reload_http_certificates(self, params=None, headers=None):
+    async def reload_http_certificates(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Reloads SSL certificates that are about to expire without restarting the OpenSearch node.
         """
@@ -638,7 +822,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def flush_cache(self, params=None, headers=None):
+    async def flush_cache(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         Flushes the Security plugin user, authentication, and authorization cache.
         """
@@ -650,7 +836,22 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def health(self, params=None, headers=None):
+    async def health(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Checks to see if the Security plugin is up and running.
 
@@ -660,7 +861,9 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_audit_configuration(self, params=None, headers=None):
+    async def get_audit_configuration(
+        self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+    ) -> Any:
         """
         A GET call retrieves the audit configuration.
         """
@@ -672,7 +875,23 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def update_audit_configuration(self, body, params=None, headers=None):
+    async def update_audit_configuration(
+        self,
+        *,
+        body: Any,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates the audit configuration.
 
@@ -689,7 +908,12 @@ class SecurityClient(NamespacedClient):
         )
 
     @query_params()
-    async def patch_audit_configuration(self, body, params=None, headers=None):
+    async def patch_audit_configuration(
+        self,
+        body: Any,
+        params: Union[Any, None] = None,
+        headers: Union[Any, None] = None,
+    ) -> Any:
         """
         A PATCH call is used to update specified fields in the audit configuration.
         """

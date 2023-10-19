@@ -35,14 +35,32 @@
 # -----------------------------------------------------
 
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
+
 from .utils import NamespacedClient, _make_path, query_params
 
 
 class NodesClient(NamespacedClient):
     @query_params("timeout")
     async def reload_secure_settings(
-        self, body=None, node_id=None, params=None, headers=None
-    ):
+        self,
+        *,
+        body: Optional[Any] = None,
+        node_id: Optional[Any] = None,
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Reloads secure settings.
 
@@ -63,7 +81,26 @@ class NodesClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "timeout")
-    async def info(self, node_id=None, metric=None, params=None, headers=None):
+    async def info(
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        metric: Optional[Any] = None,
+        flat_settings: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about nodes in the cluster.
 
@@ -94,8 +131,32 @@ class NodesClient(NamespacedClient):
         "types",
     )
     async def stats(
-        self, node_id=None, metric=None, index_metric=None, params=None, headers=None
-    ):
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        metric: Optional[Any] = None,
+        index_metric: Optional[Any] = None,
+        completion_fields: Optional[Any],
+        fielddata_fields: Optional[Any],
+        fields: Optional[Any],
+        groups: Optional[Any],
+        include_segment_file_sizes: Optional[Any],
+        level: Optional[Any],
+        timeout: Optional[Any],
+        types: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns statistical information about nodes in the cluster.
 
@@ -139,7 +200,29 @@ class NodesClient(NamespacedClient):
     @query_params(
         "doc_type", "ignore_idle_threads", "interval", "snapshots", "threads", "timeout"
     )
-    async def hot_threads(self, node_id=None, params=None, headers=None):
+    async def hot_threads(
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        doc_type: Optional[Any],
+        ignore_idle_threads: Optional[Any],
+        interval: Optional[Any],
+        snapshots: Optional[Any],
+        threads: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about hot threads on each node in the cluster.
 
@@ -172,7 +255,25 @@ class NodesClient(NamespacedClient):
         )
 
     @query_params("timeout")
-    async def usage(self, node_id=None, metric=None, params=None, headers=None):
+    async def usage(
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        metric: Optional[Any] = None,
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns low-level information about REST actions usage on nodes.
 

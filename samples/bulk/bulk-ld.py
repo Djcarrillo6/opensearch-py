@@ -6,50 +6,45 @@
 # this file be licensed under the Apache-2.0 license or a
 # compatible open source license.
 
-import os
 import json
+import os
 
 from opensearchpy import OpenSearch
 
 # connect to an instance of OpenSearch
 
-host = os.getenv('HOST', default='localhost')
-port = int(os.getenv('PORT', 9200))
-auth = (
-    os.getenv('USERNAME', 'admin'), 
-    os.getenv('PASSWORD', 'admin')
-)
+host = os.getenv("HOST", default="localhost")
+port = int(os.getenv("PORT", 9200))
+auth = (os.getenv("USERNAME", "admin"), os.getenv("PASSWORD", "admin"))
 
 client = OpenSearch(
-    hosts = [{'host': host, 'port': port}],
-    http_auth = auth,
-    use_ssl = True,
-    verify_certs = False,
-    ssl_show_warn = False
+    hosts=[{"host": host, "port": port}],
+    http_auth=auth,
+    use_ssl=True,
+    verify_certs=False,
+    ssl_show_warn=False,
 )
 
 # check whether an index exists
 index_name = "my-index"
 
 if not client.indices.exists(index_name):
-
-    client.indices.create(index_name, 
+    client.indices.create(
+        index_name,
         body={
-            "mappings":{
+            "mappings": {
                 "properties": {
-                    "value": {
-                        "type": "float"
-                    },
+                    "value": {"type": "float"},
                 }
             }
-        }
+        },
     )
 
 # index data
-data = ''
+data = ""
 for i in range(100):
-    data += json.dumps({ "index": {"_index": index_name, "_id": i }}) + "\n"
-    data += json.dumps({ "value": i }) + "\n"
+    data += json.dumps({"index": {"_index": index_name, "_id": i}}) + "\n"
+    data += json.dumps({"value": i}) + "\n"
 
 rc = client.bulk(data)
 if rc["errors"]:
@@ -61,4 +56,3 @@ else:
 
 # delete index
 client.indices.delete(index=index_name)
-

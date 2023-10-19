@@ -7,13 +7,20 @@
 # Modifications Copyright OpenSearch Contributors. See
 # GitHub history for details.
 
+from typing import Any, Optional, Union
 
 from ..client.utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
 class IndexManagementClient(NamespacedClient):
     @query_params()
-    async def put_policy(self, policy, body=None, params=None, headers=None):
+    async def put_policy(
+        self,
+        policy: Any,
+        body: Optional[Any] = None,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Creates, or updates, a policy.
 
@@ -31,7 +38,13 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def add_policy(self, index, body=None, params=None, headers=None):
+    async def add_policy(
+        self,
+        index: Any,
+        body: Optional[Any] = None,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Adds a policy to an index. This operation does not change the policy if the index already has one.
 
@@ -49,7 +62,12 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_policy(self, policy, params=None, headers=None):
+    async def get_policy(
+        self,
+        policy: Any,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Gets the policy by `policy_id`.
 
@@ -66,7 +84,12 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def remove_policy_from_index(self, index, params=None, headers=None):
+    async def remove_policy_from_index(
+        self,
+        index: Any,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Removes any ISM policy from the index.
 
@@ -83,7 +106,13 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def change_policy(self, index, body=None, params=None, headers=None):
+    async def change_policy(
+        self,
+        index: Any,
+        body: Optional[Any] = None,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Updates the managed index policy to a new policy (or to a new version of the policy).
 
@@ -101,7 +130,13 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def retry(self, index, body=None, params=None, headers=None):
+    async def retry(
+        self,
+        index: Any,
+        body: Optional[Any] = None,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Retries the failed action for an index.
 
@@ -119,7 +154,12 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params("show_policy")
-    async def explain_index(self, index, params=None, headers=None):
+    async def explain_index(
+        self,
+        index: Any,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Gets the current state of the index.
 
@@ -136,7 +176,12 @@ class IndexManagementClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_policy(self, policy, params=None, headers=None):
+    async def delete_policy(
+        self,
+        policy: Any,
+        params: Optional[Any] = None,
+        headers: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Deletes the policy by `policy_id`.
 

@@ -27,6 +27,7 @@
 import ssl
 import time
 import warnings
+from typing import Any, Mapping, Optional
 
 import urllib3  # type: ignore
 from urllib3.exceptions import ReadTimeoutError
@@ -97,25 +98,26 @@ class Urllib3HttpConnection(Connection):
 
     def __init__(
         self,
-        host="localhost",
-        port=None,
-        http_auth=None,
-        use_ssl=False,
-        verify_certs=VERIFY_CERTS_DEFAULT,
-        ssl_show_warn=SSL_SHOW_WARN_DEFAULT,
-        ca_certs=None,
-        client_cert=None,
-        client_key=None,
-        ssl_version=None,
-        ssl_assert_hostname=None,
-        ssl_assert_fingerprint=None,
-        pool_maxsize=None,
-        headers=None,
-        ssl_context=None,
-        http_compress=None,
-        opaque_id=None,
-        **kwargs
-    ):
+        host: str = "localhost",
+        port: Optional[int] = None,
+        http_auth: Any = None,
+        use_ssl: bool = False,
+        verify_certs: bool = VERIFY_CERTS_DEFAULT,
+        ssl_show_warn: bool = SSL_SHOW_WARN_DEFAULT,
+        ca_certs: Optional[Any] = None,
+        client_cert: Optional[Any] = None,
+        client_key: Optional[Any] = None,
+        ssl_version: Optional[Any] = None,
+        ssl_assert_hostname: Optional[Any] = None,
+        ssl_assert_fingerprint: Optional[Any] = None,
+        pool_maxsize: int = None,
+        maxsize: int = None,
+        headers: Optional[Mapping[str, str]] = None,
+        ssl_context: Optional[Any] = None,
+        http_compress: Optional[bool] = None,
+        opaque_id: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         # Initialize headers before calling super().__init__().
         self.headers = urllib3.make_headers(keep_alive=True)
 

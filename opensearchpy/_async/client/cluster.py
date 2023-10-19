@@ -35,6 +35,8 @@
 # -----------------------------------------------------
 
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
+
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
@@ -54,7 +56,36 @@ class ClusterClient(NamespacedClient):
         "wait_for_nodes",
         "wait_for_status",
     )
-    async def health(self, index=None, params=None, headers=None):
+    async def health(
+        self,
+        *,
+        index: Optional[Any] = None,
+        awareness_attribute: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        expand_wildcards: Optional[Any],
+        level: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        wait_for_events: Optional[Any],
+        wait_for_no_initializing_shards: Optional[Any],
+        wait_for_no_relocating_shards: Optional[Any],
+        wait_for_nodes: Optional[Any],
+        wait_for_status: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns basic information about the health of the cluster.
 
@@ -98,7 +129,25 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("cluster_manager_timeout", "local", "master_timeout")
-    async def pending_tasks(self, params=None, headers=None):
+    async def pending_tasks(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a list of any cluster-level changes (e.g. create index, update mapping,
         allocate or fail shard) which have not yet been executed.
@@ -127,7 +176,33 @@ class ClusterClient(NamespacedClient):
         "wait_for_metadata_version",
         "wait_for_timeout",
     )
-    async def state(self, metric=None, index=None, params=None, headers=None):
+    async def state(
+        self,
+        *,
+        metric: Optional[Any] = None,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flat_settings: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        wait_for_metadata_version: Optional[Any],
+        wait_for_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Returns a comprehensive information about the state of the cluster.
 
@@ -170,7 +245,25 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "timeout")
-    async def stats(self, node_id=None, params=None, headers=None):
+    async def stats(
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        flat_settings: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns high-level overview of cluster statistics.
 
@@ -201,7 +294,30 @@ class ClusterClient(NamespacedClient):
         "retry_failed",
         "timeout",
     )
-    async def reroute(self, body=None, params=None, headers=None):
+    async def reroute(
+        self,
+        *,
+        body: Optional[Any] = None,
+        cluster_manager_timeout: Optional[Any],
+        dry_run: Optional[Any],
+        explain: Optional[Any],
+        master_timeout: Optional[Any],
+        metric: Optional[Any],
+        retry_failed: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to manually change the allocation of individual shards in the cluster.
 
@@ -234,7 +350,27 @@ class ClusterClient(NamespacedClient):
         "master_timeout",
         "timeout",
     )
-    async def get_settings(self, params=None, headers=None):
+    async def get_settings(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        flat_settings: Optional[Any],
+        include_defaults: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns cluster settings.
 
@@ -257,7 +393,27 @@ class ClusterClient(NamespacedClient):
     @query_params(
         "cluster_manager_timeout", "flat_settings", "master_timeout", "timeout"
     )
-    async def put_settings(self, body, params=None, headers=None):
+    async def put_settings(
+        self,
+        *,
+        body: Any,
+        cluster_manager_timeout: Optional[Any],
+        flat_settings: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates the cluster settings.
 
@@ -281,7 +437,22 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params()
-    async def remote_info(self, params=None, headers=None):
+    async def remote_info(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns the information about configured remote clusters.
 
@@ -291,7 +462,25 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("include_disk_info", "include_yes_decisions")
-    async def allocation_explain(self, body=None, params=None, headers=None):
+    async def allocation_explain(
+        self,
+        *,
+        body: Optional[Any] = None,
+        include_disk_info: Optional[Any],
+        include_yes_decisions: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides explanations for shard allocations in the cluster.
 
@@ -312,7 +501,26 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("cluster_manager_timeout", "master_timeout", "timeout")
-    async def delete_component_template(self, name, params=None, headers=None):
+    async def delete_component_template(
+        self,
+        name: Any,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes a component template.
 
@@ -336,7 +544,26 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("cluster_manager_timeout", "local", "master_timeout")
-    async def get_component_template(self, name=None, params=None, headers=None):
+    async def get_component_template(
+        self,
+        *,
+        name: Optional[Any] = None,
+        cluster_manager_timeout: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns one or more component templates.
 
@@ -358,7 +585,28 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("cluster_manager_timeout", "create", "master_timeout", "timeout")
-    async def put_component_template(self, name, body, params=None, headers=None):
+    async def put_component_template(
+        self,
+        name: Any,
+        *,
+        body: Any,
+        cluster_manager_timeout: Optional[Any],
+        create: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or updates a component template.
 
@@ -387,7 +635,25 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("local", "master_timeout")
-    async def exists_component_template(self, name, params=None, headers=None):
+    async def exists_component_template(
+        self,
+        name: Any,
+        *,
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a particular component template exist.
 
@@ -410,7 +676,23 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("wait_for_removal")
-    async def delete_voting_config_exclusions(self, params=None, headers=None):
+    async def delete_voting_config_exclusions(
+        self,
+        *,
+        wait_for_removal: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Clears cluster voting config exclusions.
 
@@ -427,7 +709,25 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params("node_ids", "node_names", "timeout")
-    async def post_voting_config_exclusions(self, params=None, headers=None):
+    async def post_voting_config_exclusions(
+        self,
+        *,
+        node_ids: Optional[Any],
+        node_names: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates the cluster voting config exclusions by node ids or node names.
 
@@ -445,7 +745,22 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_decommission_awareness(self, params=None, headers=None):
+    async def delete_decommission_awareness(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Delete any existing decommission.
 
@@ -458,7 +773,22 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params()
-    async def delete_weighted_routing(self, params=None, headers=None):
+    async def delete_weighted_routing(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Delete weighted shard routing weights.
 
@@ -472,8 +802,22 @@ class ClusterClient(NamespacedClient):
 
     @query_params()
     async def get_decommission_awareness(
-        self, awareness_attribute_name, params=None, headers=None
-    ):
+        self,
+        awareness_attribute_name: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Get details and status of decommissioned attribute.
 
@@ -499,7 +843,23 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params()
-    async def get_weighted_routing(self, attribute, params=None, headers=None):
+    async def get_weighted_routing(
+        self,
+        attribute: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Fetches weighted shard routing weights.
 
@@ -519,11 +879,22 @@ class ClusterClient(NamespacedClient):
     @query_params()
     async def put_decommission_awareness(
         self,
-        awareness_attribute_name,
-        awareness_attribute_value,
-        params=None,
-        headers=None,
-    ):
+        awareness_attribute_name: Any,
+        awareness_attribute_value: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Decommissions an awareness attribute.
 
@@ -549,7 +920,23 @@ class ClusterClient(NamespacedClient):
         )
 
     @query_params()
-    async def put_weighted_routing(self, attribute, params=None, headers=None):
+    async def put_weighted_routing(
+        self,
+        attribute: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates weighted shard routing weights.
 

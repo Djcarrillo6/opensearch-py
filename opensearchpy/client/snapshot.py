@@ -24,13 +24,35 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
 class SnapshotClient(NamespacedClient):
     @query_params("master_timeout", "cluster_manager_timeout", "wait_for_completion")
-    def create(self, repository, snapshot, body=None, params=None, headers=None):
+    def create(
+        self,
+        repository: Any,
+        snapshot: Any,
+        *,
+        body: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates a snapshot in a repository.
 
@@ -58,7 +80,26 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout")
-    def delete(self, repository, snapshot, params=None, headers=None):
+    def delete(
+        self,
+        repository: Any,
+        snapshot: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes a snapshot.
 
@@ -89,7 +130,30 @@ class SnapshotClient(NamespacedClient):
         "cluster_manager_timeout",
         "verbose",
     )
-    def get(self, repository, snapshot, params=None, headers=None):
+    def get(
+        self,
+        repository: Any,
+        snapshot: Any,
+        *,
+        ignore_unavailable: Optional[Any],
+        include_repository: Optional[Any],
+        index_details: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        verbose: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about a snapshot.
 
@@ -122,7 +186,26 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def delete_repository(self, repository, params=None, headers=None):
+    def delete_repository(
+        self,
+        repository: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes a repository.
 
@@ -146,7 +229,26 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("local", "master_timeout", "cluster_manager_timeout")
-    def get_repository(self, repository=None, params=None, headers=None):
+    def get_repository(
+        self,
+        *,
+        repository: Optional[Any] = None,
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about a repository.
 
@@ -164,7 +266,28 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout", "verify")
-    def create_repository(self, repository, body, params=None, headers=None):
+    def create_repository(
+        self,
+        repository: Any,
+        *,
+        body: Any,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        verify: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates a repository.
 
@@ -191,7 +314,28 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "wait_for_completion")
-    def restore(self, repository, snapshot, body=None, params=None, headers=None):
+    def restore(
+        self,
+        repository: Any,
+        snapshot: Any,
+        *,
+        body: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Restores a snapshot.
 
@@ -219,7 +363,27 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("ignore_unavailable", "master_timeout", "cluster_manager_timeout")
-    def status(self, repository=None, snapshot=None, params=None, headers=None):
+    def status(
+        self,
+        *,
+        repository: Optional[Any] = None,
+        snapshot: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about the status of a snapshot.
 
@@ -242,7 +406,26 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def verify_repository(self, repository, params=None, headers=None):
+    def verify_repository(
+        self,
+        repository: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Verifies a repository.
 
@@ -265,7 +448,26 @@ class SnapshotClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def cleanup_repository(self, repository, params=None, headers=None):
+    def cleanup_repository(
+        self,
+        repository: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Removes stale data from repository.
 
@@ -289,8 +491,27 @@ class SnapshotClient(NamespacedClient):
 
     @query_params("master_timeout", "cluster_manager_timeout")
     def clone(
-        self, repository, snapshot, target_snapshot, body, params=None, headers=None
-    ):
+        self,
+        repository: Any,
+        snapshot: Any,
+        target_snapshot: Any,
+        *,
+        body: Any,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Clones indices from one snapshot into another snapshot in the same repository.
 
@@ -329,7 +550,34 @@ class SnapshotClient(NamespacedClient):
         "seed",
         "timeout",
     )
-    def repository_analyze(self, repository, params=None, headers=None):
+    def repository_analyze(
+        self,
+        repository: Any,
+        *,
+        blob_count: Optional[Any],
+        concurrency: Optional[Any],
+        detailed: Optional[Any],
+        early_read_node_count: Optional[Any],
+        max_blob_size: Optional[Any],
+        max_total_data_size: Optional[Any],
+        rare_action_probability: Optional[Any],
+        rarely_abort_writes: Optional[Any],
+        read_node_count: Optional[Any],
+        seed: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Analyzes a repository for correctness and performance
 

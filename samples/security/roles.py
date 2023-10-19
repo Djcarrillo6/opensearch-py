@@ -13,16 +13,16 @@ from opensearchpy import OpenSearch
 
 # connect to OpenSearch
 
-host = 'localhost'
+host = "localhost"
 port = 9200
-auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
+auth = ("admin", "admin")  # For testing only. Don't store credentials in code.
 
 client = OpenSearch(
-    hosts = [{'host': host, 'port': port}],
-    http_auth = auth,
-    use_ssl = True,
-    verify_certs = False,
-    ssl_show_warn = False
+    hosts=[{"host": host, "port": port}],
+    http_auth=auth,
+    use_ssl=True,
+    verify_certs=False,
+    ssl_show_warn=False,
 )
 
 # Create a Role
@@ -30,16 +30,16 @@ client = OpenSearch(
 role_name = "test-role"
 
 role_content = {
-  "cluster_permissions": ["cluster_monitor"],
-  "index_permissions": [
-      {
-          "index_patterns": ["index", "test-*"],
-          "allowed_actions": [
-              "data_access",
-              "indices_monitor",
-          ],
-      }
-  ],
+    "cluster_permissions": ["cluster_monitor"],
+    "index_permissions": [
+        {
+            "index_patterns": ["index", "test-*"],
+            "allowed_actions": [
+                "data_access",
+                "indices_monitor",
+            ],
+        }
+    ],
 }
 
 response = client.security.create_role(role_name, body=role_content)

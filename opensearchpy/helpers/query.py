@@ -30,6 +30,7 @@ except ImportError:
     import collections as collections_abc
 
 from itertools import chain
+from typing import Any
 
 # 'SF' looks unused but the test suite assumes it's available
 # from this module so others are liable to do so as well.
@@ -38,7 +39,7 @@ from ..helpers.function import ScoreFunction
 from .utils import DslBase
 
 
-def Q(name_or_query="match_all", **params):
+def Q(name_or_query: Any = "match_all", **params: Any) -> Any:
     # {"match": {"title": "python"}}
     if isinstance(name_or_query, collections_abc.Mapping):
         if params:

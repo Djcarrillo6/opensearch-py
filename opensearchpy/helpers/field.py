@@ -27,6 +27,7 @@
 import base64
 import copy
 import ipaddress
+from typing import Any
 
 try:
     import collections.abc as collections_abc  # only works on python 3.3+
@@ -47,7 +48,7 @@ from .wrappers import Range
 unicode = type("")
 
 
-def construct_field(name_or_field, **params):
+def construct_field(name_or_field: Any, **params: Any) -> Any:
     # {"type": "text", "analyzer": "snowball"}
     if isinstance(name_or_field, collections_abc.Mapping):
         if params:

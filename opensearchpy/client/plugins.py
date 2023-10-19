@@ -16,7 +16,7 @@ from .utils import NamespacedClient
 
 
 class PluginsClient(NamespacedClient):
-    def __init__(self, client):
+    def __init__(self, client) -> None:
         super(PluginsClient, self).__init__(client)
         # self.query_workbench = QueryWorkbenchClient(client)
         # self.reporting = ReportingClient(client)

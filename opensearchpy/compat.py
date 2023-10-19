@@ -26,8 +26,9 @@
 
 
 import sys
+from typing import Callable, Tuple, Type, Union
 
-PY2 = sys.version_info[0] == 2
+PY2: bool = sys.version_info[0] == 2
 
 if PY2:
     string_types = (basestring,)  # noqa: F821
@@ -42,7 +43,7 @@ if PY2:
             return x.encode(encoding)
         return x
 
-    to_bytes = to_str
+    to_bytes: Callable[[Union[str, bytes]], bytes] = to_str
 
 else:
     string_types = str, bytes
@@ -69,7 +70,7 @@ except ImportError:
 
 
 try:
-    reraise_exceptions = (RecursionError,)
+    reraise_exceptions: Tuple[Type[Exception], ...] = (RecursionError,)
 except NameError:
     reraise_exceptions = ()
 

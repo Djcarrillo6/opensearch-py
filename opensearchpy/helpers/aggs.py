@@ -23,6 +23,9 @@
 #  KIND, either express or implied.  See the License for the
 #  specific language governing permissions and limitations
 #  under the License.
+from typing import Any
+
+from _typeshed import Incomplete
 
 try:
     import collections.abc as collections_abc  # only works on python 3.3+
@@ -33,7 +36,7 @@ from .response.aggs import AggResponse, BucketData, FieldBucketData, TopHitsData
 from .utils import DslBase
 
 
-def A(name_or_agg, filter=None, **params):
+def A(name_or_agg: Any, filter: Incomplete | None = None, **params: Any) -> Any:
     if filter is not None:
         if name_or_agg != "filter":
             raise ValueError(

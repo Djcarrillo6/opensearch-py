@@ -24,13 +24,31 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import NamespacedClient, query_params
 
 
 class FeaturesClient(NamespacedClient):
     @query_params("master_timeout", "cluster_manager_timeout")
-    def get_features(self, params=None, headers=None):
+    def get_features(
+        self,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Gets a list of features which can be included in snapshots using the
         feature_states field when creating a snapshot
@@ -46,7 +64,22 @@ class FeaturesClient(NamespacedClient):
         )
 
     @query_params()
-    def reset_features(self, params=None, headers=None):
+    def reset_features(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Resets the internal state of features, usually by deleting system indices
 

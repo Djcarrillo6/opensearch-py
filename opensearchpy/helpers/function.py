@@ -29,10 +29,12 @@ try:
 except ImportError:
     import collections as collections_abc
 
+from typing import Any
+
 from .utils import DslBase
 
 
-def SF(name_or_sf, **params):
+def SF(name_or_sf: Any, **params: Any) -> Any:
     # {"script_score": {"script": "_score"}, "filter": {}}
     if isinstance(name_or_sf, collections_abc.Mapping):
         if params:

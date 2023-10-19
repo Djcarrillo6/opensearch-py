@@ -33,6 +33,7 @@ except ImportError:
 import uuid
 from datetime import date, datetime
 from decimal import Decimal
+from typing import Any, Dict, Optional
 
 from .compat import string_types
 from .exceptions import ImproperlyConfigured, SerializationError
@@ -46,20 +47,20 @@ TIME_TYPES = (date, datetime)
 class Serializer(object):
     mimetype = ""
 
-    def loads(self, s):
+    def loads(self, s: str) -> Any:
         raise NotImplementedError()
 
-    def dumps(self, data):
+    def dumps(self, data: Any) -> str:
         raise NotImplementedError()
 
 
 class TextSerializer(Serializer):
     mimetype = "text/plain"
 
-    def loads(self, s):
+    def loads(self, s: str) -> Any:
         return s
 
-    def dumps(self, data):
+    def dumps(self, data: Any) -> str:
         if isinstance(data, string_types):
             return data
 
@@ -141,13 +142,13 @@ class JSONSerializer(Serializer):
 
         raise TypeError("Unable to serialize %r (type: %s)" % (data, type(data)))
 
-    def loads(self, s):
+    def loads(self, s: str) -> Any:
         try:
             return json.loads(s)
         except (ValueError, TypeError) as e:
             raise SerializationError(s, e)
 
-    def dumps(self, data):
+    def dumps(self, data: Any) -> str:
         # don't serialize strings
         if isinstance(data, string_types):
             return data
@@ -167,7 +168,11 @@ DEFAULT_SERIALIZERS = {
 
 
 class Deserializer(object):
-    def __init__(self, serializers, default_mimetype="application/json"):
+    def __init__(
+        self,
+        serializers: Dict[str, Serializer],
+        default_mimetype: str = "application/json",
+    ) -> None:
         try:
             self.default = serializers[default_mimetype]
         except KeyError:
@@ -176,7 +181,7 @@ class Deserializer(object):
             )
         self.serializers = serializers
 
-    def loads(self, s, mimetype=None):
+    def loads(self, s: str, mimetype: Optional[str] = None) -> Any:
         if not mimetype:
             deserializer = self.default
         else:

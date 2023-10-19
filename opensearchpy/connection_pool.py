@@ -29,6 +29,9 @@ import logging
 import random
 import threading
 import time
+from typing import Any, Optional, Sequence, Tuple, Type
+
+from .connection import Connection
 
 try:
     from Queue import Empty, PriorityQueue
@@ -59,13 +62,13 @@ class ConnectionSelector(object):
     connections where there would be none in its zones.
     """
 
-    def __init__(self, opts):
+    def __init__(self, opts: Sequence[Tuple[Connection, Any]]) -> None:
         """
         :arg opts: dictionary of connection instances and their options
         """
         self.connection_opts = opts
 
-    def select(self, connections):
+    def select(self, connections: Sequence[Connection]) -> Connection:
         """
         Select a connection from the given list.
 
@@ -123,13 +126,13 @@ class ConnectionPool(object):
 
     def __init__(
         self,
-        connections,
-        dead_timeout=60,
-        timeout_cutoff=5,
-        selector_class=RoundRobinSelector,
-        randomize_hosts=True,
-        **kwargs
-    ):
+        connections: Sequence[Tuple[Connection, Any]],
+        dead_timeout: float = 60,
+        timeout_cutoff: int = 5,
+        selector_class: Type[ConnectionSelector] = RoundRobinSelector,
+        randomize_hosts: bool = True,
+        **kwargs: Any
+    ) -> None:
         """
         :arg connections: list of tuples containing the
             :class:`~opensearchpy.Connection` instance and its options
@@ -165,7 +168,7 @@ class ConnectionPool(object):
 
         self.selector = selector_class(dict(connections))
 
-    def mark_dead(self, connection, now=None):
+    def mark_dead(self, connection: Connection, now: Optional[float] = None) -> None:
         """
         Mark the connection as dead (failed). Remove it from the live pool and
         put it on a timeout.
@@ -195,7 +198,7 @@ class ConnectionPool(object):
                 timeout,
             )
 
-    def mark_live(self, connection):
+    def mark_live(self, connection: Connection) -> None:
         """
         Mark connection as healthy after a resurrection. Resets the fail
         counter for the connection.
@@ -208,7 +211,7 @@ class ConnectionPool(object):
             # race condition, safe to ignore
             pass
 
-    def resurrect(self, force=False):
+    def resurrect(self, force: bool = False) -> Optional[Connection]:
         """
         Attempt to resurrect a connection from the dead pool. It will try to
         locate one (not all) eligible (its timeout is over) connection to
@@ -250,7 +253,7 @@ class ConnectionPool(object):
         logger.info("Resurrecting connection %r (force=%s).", connection, force)
         return connection
 
-    def get_connection(self):
+    def get_connection(self) -> Connection:
         """
         Return a connection from the pool using the `ConnectionSelector`
         instance.
@@ -275,19 +278,21 @@ class ConnectionPool(object):
         # only one connection, no need for a selector
         return connections[0]
 
-    def close(self):
+    def close(self) -> None:
         """
         Explicitly closes connections
         """
         for conn in self.connections:
             conn.close()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "<%s: %r>" % (type(self).__name__, self.connections)
 
 
 class DummyConnectionPool(ConnectionPool):
-    def __init__(self, connections, **kwargs):
+    def __init__(
+        self, connections: Sequence[Tuple[Connection, Any]], **kwargs: Any
+    ) -> None:
         if len(connections) != 1:
             raise ImproperlyConfigured(
                 "DummyConnectionPool needs exactly one " "connection defined."
@@ -297,16 +302,16 @@ class DummyConnectionPool(ConnectionPool):
         self.connection = connections[0][0]
         self.connections = (self.connection,)
 
-    def get_connection(self):
+    def get_connection(self) -> Connection:
         return self.connection
 
-    def close(self):
+    def close(self) -> None:
         """
         Explicitly closes connections
         """
         self.connection.close()
 
-    def _noop(self, *args, **kwargs):
+    def _noop(self, *args: Any, **kwargs: Any) -> Any:
         pass
 
     mark_dead = mark_live = resurrect = _noop
@@ -315,14 +320,14 @@ class DummyConnectionPool(ConnectionPool):
 class EmptyConnectionPool(ConnectionPool):
     """A connection pool that is empty. Errors out if used."""
 
-    def __init__(self, *_, **__):
+    def __init__(self, *_: Any, **__: Any) -> None:
         self.connections = []
         self.connection_opts = []
 
-    def get_connection(self):
+    def get_connection(self) -> Connection:
         raise ImproperlyConfigured("No connections were configured")
 
-    def _noop(self, *args, **kwargs):
+    def _noop(self, *args: Any, **kwargs: Any) -> Any:
         pass
 
     close = mark_dead = mark_live = resurrect = _noop

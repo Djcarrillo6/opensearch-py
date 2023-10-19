@@ -27,8 +27,9 @@
 
 import time
 from itertools import chain
+from typing import Any, Callable, Collection, Dict, Mapping, Optional, Type, Union
 
-from .connection import Urllib3HttpConnection
+from .connection import Connection, Urllib3HttpConnection
 from .connection_pool import ConnectionPool, DummyConnectionPool, EmptyConnectionPool
 from .exceptions import (
     ConnectionError,
@@ -36,10 +37,12 @@ from .exceptions import (
     SerializationError,
     TransportError,
 )
-from .serializer import DEFAULT_SERIALIZERS, Deserializer, JSONSerializer
+from .serializer import DEFAULT_SERIALIZERS, Deserializer, JSONSerializer, Serializer
 
 
-def get_host_info(node_info, host):
+def get_host_info(
+    node_info: Dict[str, Any], host: Optional[Dict[str, Any]]
+) -> Optional[Dict[str, Any]]:
     """
     Simple callback that takes the node info from `/_cluster/nodes` and a
     parsed connection information and return the connection information. If
@@ -71,24 +74,26 @@ class Transport(object):
 
     def __init__(
         self,
-        hosts,
-        connection_class=None,
-        connection_pool_class=ConnectionPool,
-        host_info_callback=get_host_info,
-        sniff_on_start=False,
-        sniffer_timeout=None,
-        sniff_timeout=0.1,
-        sniff_on_connection_fail=False,
-        serializer=JSONSerializer(),
-        serializers=None,
-        default_mimetype="application/json",
-        max_retries=3,
-        pool_maxsize=None,
-        retry_on_status=(502, 503, 504),
-        retry_on_timeout=False,
-        send_get_body_as="GET",
-        **kwargs
-    ):
+        hosts: Any,
+        connection_class: Optional[Type[Any]] = None,
+        connection_pool_class: Type[ConnectionPool] = ConnectionPool,
+        host_info_callback: Callable[
+            [Dict[str, Any], Optional[Dict[str, Any]]], Optional[Dict[str, Any]]
+        ] = get_host_info,
+        sniff_on_start: bool = False,
+        sniffer_timeout: Optional[float] = None,
+        sniff_timeout: float = 0.1,
+        sniff_on_connection_fail: bool = False,
+        serializer: Serializer = JSONSerializer(),
+        serializers: Optional[Mapping[str, Serializer]] = None,
+        default_mimetype: str = "application/json",
+        max_retries: int = 3,
+        pool_maxsize: Optional[int] = None,
+        retry_on_status: Collection[int] = (502, 503, 504),
+        retry_on_timeout: bool = False,
+        send_get_body_as: str = "GET",
+        **kwargs: Any
+    ) -> None:
         """
         :arg hosts: list of dictionaries, each containing keyword arguments to
             create a `connection_class` instance
@@ -184,7 +189,7 @@ class Transport(object):
         if sniff_on_start:
             self.sniff_hosts(True)
 
-    def add_connection(self, host):
+    def add_connection(self, host: Any) -> None:
         """
         Create a new :class:`~opensearchpy.Connection` instance and add it to the pool.
 
@@ -193,7 +198,7 @@ class Transport(object):
         self.hosts.append(host)
         self.set_connections(self.hosts)
 
-    def set_connections(self, hosts):
+    def set_connections(self, hosts: Collection[Any]) -> None:
         """
         Instantiate all the connections and create new connection pool to hold them.
         Tries to identify unchanged hosts and re-use existing
@@ -230,7 +235,7 @@ class Transport(object):
                 connections, **self.kwargs
             )
 
-    def get_connection(self):
+    def get_connection(self) -> Connection:
         """
         Retrieve a :class:`~opensearchpy.Connection` instance from the
         :class:`~opensearchpy.ConnectionPool` instance.
@@ -309,7 +314,7 @@ class Transport(object):
 
         return self.host_info_callback(host_info, host)
 
-    def sniff_hosts(self, initial=False):
+    def sniff_hosts(self, initial: bool = ...) -> None:
         """
         Obtain a list of nodes from the cluster and create a new connection
         pool using the information retrieved.
@@ -332,7 +337,7 @@ class Transport(object):
 
         self.set_connections(hosts)
 
-    def mark_dead(self, connection):
+    def mark_dead(self, connection: Connection) -> None:
         """
         Mark a connection as dead (failed) in the connection pool. If sniffing
         on failure is enabled this will initiate the sniffing process.
@@ -344,7 +349,14 @@ class Transport(object):
         if self.sniff_on_connection_fail:
             self.sniff_hosts()
 
-    def perform_request(self, method, url, headers=None, params=None, body=None):
+    def perform_request(
+        self,
+        method: str,
+        url: str,
+        headers: Optional[Mapping[str, str]] = None,
+        params: Optional[Mapping[str, Any]] = None,
+        body: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Perform the actual request. Retrieve a connection from the connection
         pool, pass all the information to its perform_request method and
@@ -427,7 +439,7 @@ class Transport(object):
                     )
                 return data
 
-    def close(self):
+    def close(self) -> None:
         """
         Explicitly closes connections
         """

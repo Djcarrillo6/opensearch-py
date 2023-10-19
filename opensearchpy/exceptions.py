@@ -24,6 +24,7 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+from typing import Any, Dict, Union
 
 __all__ = [
     "ImproperlyConfigured",
@@ -75,7 +76,7 @@ class TransportError(OpenSearchException):
     """
 
     @property
-    def status_code(self):
+    def status_code(self) -> Union[str, int]:
         """
         The HTTP status code of the response that precipitated the error or
         ``'N/A'`` if not applicable.
@@ -83,19 +84,19 @@ class TransportError(OpenSearchException):
         return self.args[0]
 
     @property
-    def error(self):
+    def error(self) -> str:
         """A string error message."""
         return self.args[1]
 
     @property
-    def info(self):
+    def info(self) -> Union[Dict[str, Any], Exception, Any]:
         """
         Dict of returned error info from OpenSearch, where available, underlying
         exception when not.
         """
         return self.args[2]
 
-    def __str__(self):
+    def __str__(self) -> str:
         cause = ""
         try:
             if self.info and "error" in self.info:
@@ -127,7 +128,7 @@ class ConnectionError(TransportError):
     implementation is available as ``.info``.
     """
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "ConnectionError(%s) caused by: %s(%s)" % (
             self.error,
             self.info.__class__.__name__,
@@ -142,7 +143,7 @@ class SSLError(ConnectionError):
 class ConnectionTimeout(ConnectionError):
     """A network timeout. Doesn't cause a node retry by default."""
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "ConnectionTimeout caused by - %s(%s)" % (
             self.info.__class__.__name__,
             self.info,
@@ -198,7 +199,7 @@ OpenSearchDeprecationWarning = OpenSearchWarning
 
 
 # more generic mappings from status_code to python exceptions
-HTTP_EXCEPTIONS = {
+HTTP_EXCEPTIONS: Dict[int, OpenSearchException] = {
     400: RequestError,
     401: AuthenticationException,
     403: AuthorizationException,

@@ -45,19 +45,19 @@ class PoolingConnection(Connection):
         self._free_connections = queue.Queue()
         super(PoolingConnection, self).__init__(*args, **kwargs)
 
-    def _make_connection(self):
+    def _make_connection(self) -> Connection:
         raise NotImplementedError
 
-    def _get_connection(self):
+    def _get_connection(self) -> Connection:
         try:
             return self._free_connections.get_nowait()
         except queue.Empty:
             return self._make_connection()
 
-    def _release_connection(self, con):
+    def _release_connection(self, con: Connection) -> None:
         self._free_connections.put(con)
 
-    def close(self):
+    def close(self) -> None:
         """
         Explicitly close connection
         """

@@ -36,6 +36,7 @@
 
 
 import warnings
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
@@ -50,7 +51,29 @@ class TasksClient(NamespacedClient):
         "timeout",
         "wait_for_completion",
     )
-    def list(self, params=None, headers=None):
+    def list(
+        self,
+        *,
+        actions: Optional[Any],
+        detailed: Optional[Any],
+        group_by: Optional[Any],
+        nodes: Optional[Any],
+        parent_task_id: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a list of tasks.
 
@@ -75,7 +98,27 @@ class TasksClient(NamespacedClient):
         )
 
     @query_params("actions", "nodes", "parent_task_id", "wait_for_completion")
-    def cancel(self, task_id=None, params=None, headers=None):
+    def cancel(
+        self,
+        *,
+        task_id: Optional[Any] = None,
+        actions: Optional[Any],
+        nodes: Optional[Any],
+        parent_task_id: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Cancels a task, if it can be cancelled through an API.
 
@@ -101,7 +144,25 @@ class TasksClient(NamespacedClient):
         )
 
     @query_params("timeout", "wait_for_completion")
-    def get(self, task_id=None, params=None, headers=None):
+    def get(
+        self,
+        *,
+        task_id: Optional[Any] = None,
+        timeout: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about a task.
 

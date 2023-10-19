@@ -24,9 +24,9 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
-
 import time
 import warnings
+from typing import Any, Mapping, Optional
 
 try:
     import requests
@@ -72,20 +72,20 @@ class RequestsHttpConnection(Connection):
 
     def __init__(
         self,
-        host="localhost",
-        port=None,
-        http_auth=None,
-        use_ssl=False,
-        verify_certs=True,
-        ssl_show_warn=True,
-        ca_certs=None,
-        client_cert=None,
-        client_key=None,
-        headers=None,
-        http_compress=None,
-        opaque_id=None,
-        pool_maxsize=None,
-        **kwargs
+        host: str = "localhost",
+        port: Optional[int] = None,
+        http_auth: Optional[Any] = None,
+        use_ssl: bool = False,
+        verify_certs: bool = True,
+        ssl_show_warn: bool = True,
+        ca_certs: Optional[Any] = None,
+        client_cert: Optional[Any] = None,
+        client_key: Optional[Any] = None,
+        headers: Optional[Mapping[str, str]] = None,
+        http_compress: Optional[bool] = None,
+        opaque_id: Optional[str] = None,
+        pool_maxsize=None,  # You might want to add the type hint for pool_maxsize
+        **kwargs: Any
     ):
         if not REQUESTS_AVAILABLE:
             raise ImproperlyConfigured(

@@ -8,12 +8,28 @@
 # GitHub history for details.
 
 import warnings
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import SKIP_IN_PATH, query_params
 
 
 @query_params()
-async def list_all_point_in_time(self, params=None, headers=None):
+async def list_all_point_in_time(
+    self,
+    *,
+    pretty: Optional[bool] = ...,
+    human: Optional[bool] = ...,
+    error_trace: Optional[bool] = ...,
+    format: Optional[str] = ...,
+    filter_path: Optional[Union[str, Collection[str]]] = ...,
+    request_timeout: Optional[Union[int, float]] = ...,
+    ignore: Optional[Union[int, Collection[int]]] = ...,
+    opaque_id: Optional[str] = ...,
+    http_auth: Optional[Union[str, Tuple[str, str]]] = ...,
+    api_key: Optional[Union[str, Tuple[str, str]]] = ...,
+    params: Optional[MutableMapping[str, Any]] = None,
+    headers: Optional[MutableMapping[str, str]] = None
+) -> Any:
     """
     Returns the list of active point in times searches
 
@@ -34,7 +50,28 @@ async def list_all_point_in_time(self, params=None, headers=None):
 @query_params(
     "expand_wildcards", "ignore_unavailable", "keep_alive", "preference", "routing"
 )
-async def create_point_in_time(self, index, params=None, headers=None):
+async def create_point_in_time(
+    self,
+    *,
+    index: Optional[Any] = ...,
+    expand_wildcards: Optional[Any] = ...,
+    ignore_unavailable: Optional[Any] = ...,
+    keep_alive: Optional[Any] = ...,
+    preference: Optional[Any] = ...,
+    routing: Optional[Any] = ...,
+    pretty: Optional[bool] = ...,
+    human: Optional[bool] = ...,
+    error_trace: Optional[bool] = ...,
+    format: Optional[str] = ...,
+    filter_path: Optional[Union[str, Collection[str]]] = ...,
+    request_timeout: Optional[Union[int, float]] = ...,
+    ignore: Optional[Union[int, Collection[int]]] = ...,
+    opaque_id: Optional[str] = ...,
+    http_auth: Optional[Union[str, Tuple[str, str]]] = ...,
+    api_key: Optional[Union[str, Tuple[str, str]]] = ...,
+    params: Optional[MutableMapping[str, Any]] = None,
+    headers: Optional[MutableMapping[str, str]] = None
+) -> Any:
     """
     Create a point in time that can be used in subsequent searches
 
@@ -67,7 +104,24 @@ async def create_point_in_time(self, index, params=None, headers=None):
 
 
 @query_params()
-async def delete_point_in_time(self, body=None, all=False, params=None, headers=None):
+async def delete_point_in_time(
+    self,
+    *,
+    body: Optional[Any] = None,
+    all: Optional[bool] = False,
+    pretty: Optional[bool] = ...,
+    human: Optional[bool] = ...,
+    error_trace: Optional[bool] = ...,
+    format: Optional[str] = ...,
+    filter_path: Optional[Union[str, Collection[str]]] = ...,
+    request_timeout: Optional[Union[int, float]] = ...,
+    ignore: Optional[Union[int, Collection[int]]] = ...,
+    opaque_id: Optional[str] = ...,
+    http_auth: Optional[Union[str, Tuple[str, str]]] = ...,
+    api_key: Optional[Union[str, Tuple[str, str]]] = ...,
+    params: Optional[MutableMapping[str, Any]] = None,
+    headers: Optional[MutableMapping[str, str]] = None
+) -> Any:
     """
     Delete a point in time
 
@@ -93,7 +147,9 @@ async def delete_point_in_time(self, body=None, all=False, params=None, headers=
 
 
 @query_params()
-async def health_check(self, params=None, headers=None):
+async def health_check(
+    self, params: Union[Any, None] = None, headers: Union[Any, None] = None
+) -> Union[bool, Any]:
     """
     Checks to see if the Security plugin is up and running.
 
@@ -112,7 +168,9 @@ async def health_check(self, params=None, headers=None):
 
 
 @query_params()
-async def update_audit_config(self, body, params=None, headers=None):
+async def update_audit_config(
+    self, body: Any, params: Union[Any, None] = None, headers: Union[Any, None] = None
+) -> Union[bool, Any]:
     """
     A PUT call updates the audit configuration.
 

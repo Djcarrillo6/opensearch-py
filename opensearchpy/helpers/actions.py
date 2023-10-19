@@ -24,10 +24,22 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
-
 import logging
 import time
 from operator import methodcaller
+from typing import (
+    Any,
+    AsyncIterable,
+    Callable,
+    Collection,
+    Dict,
+    Generator,
+    Iterable,
+    List,
+    Optional,
+    Tuple,
+    Union,
+)
 
 from ..compat import Mapping, Queue, map, string_types
 from ..exceptions import TransportError
@@ -36,7 +48,7 @@ from .errors import BulkIndexError, ScanError
 logger = logging.getLogger("opensearchpy.helpers")
 
 
-def expand_action(data):
+def expand_action(data: Any) -> Tuple[Dict[str, Any], Optional[Any]]:
     """
     From one document or action definition passed in by the user extract the
     action/data lines needed for opensearch's
@@ -153,7 +165,9 @@ class _ActionChunker:
         return ret
 
 
-def _chunk_actions(actions, chunk_size, max_chunk_bytes, serializer):
+def _chunk_actions(
+    actions: Any, chunk_size: int, max_chunk_bytes: int, serializer
+) -> Generator[Any, None, None]:
     """
     Split actions into chunks by number or size, serialize them into strings in
     the process.
@@ -232,9 +246,9 @@ def _process_bulk_chunk(
     bulk_data,
     raise_on_exception=True,
     raise_on_error=True,
-    ignore_status=(),
-    *args,
-    **kwargs
+    ignore_status: Optional[Union[int, Collection[int]]] = (),
+    *args: Any,
+    **kwargs: Any
 ):
     """
     Send a bulk request to opensearch and process the output.
@@ -266,19 +280,21 @@ def _process_bulk_chunk(
 
 def streaming_bulk(
     client,
-    actions,
-    chunk_size=500,
-    max_chunk_bytes=100 * 1024 * 1024,
-    raise_on_error=True,
-    expand_action_callback=expand_action,
-    raise_on_exception=True,
-    max_retries=0,
-    initial_backoff=2,
-    max_backoff=600,
-    yield_ok=True,
-    ignore_status=(),
-    *args,
-    **kwargs
+    actions: Union[Iterable[Any], AsyncIterable[Any]],
+    chunk_size: int = 500,
+    max_chunk_bytes: int = 100 * 1024 * 1024,
+    raise_on_error: bool = True,
+    expand_action_callback: Callable[
+        [Any], Tuple[Dict[str, Any], Optional[Any]]
+    ] = expand_action,
+    raise_on_exception: bool = True,
+    max_retries: int = 0,
+    initial_backoff: int = 2,
+    max_backoff: int = 600,
+    yield_ok: bool = True,
+    ignore_status: Optional[Union[int, Collection[int]]] = (),
+    *args: Any,
+    **kwargs: Any
 ):
     """
     Streaming bulk consumes actions from the iterable passed in and yields
@@ -368,7 +384,14 @@ def streaming_bulk(
                 bulk_actions, bulk_data = to_retry, to_retry_data
 
 
-def bulk(client, actions, stats_only=False, ignore_status=(), *args, **kwargs):
+def bulk(
+    client,
+    actions,
+    stats_only=False,
+    ignore_status: Optional[Union[int, Collection[int]]] = (),
+    *args: Any,
+    **kwargs: Any
+) -> Tuple[int, int]:
     """
     Helper for the :meth:`~opensearchpy.OpenSearch.bulk` api that provides
     a more human friendly interface - it consumes an iterator of actions and
@@ -420,16 +443,18 @@ def bulk(client, actions, stats_only=False, ignore_status=(), *args, **kwargs):
 
 def parallel_bulk(
     client,
-    actions,
-    thread_count=4,
-    chunk_size=500,
-    max_chunk_bytes=100 * 1024 * 1024,
-    queue_size=4,
-    expand_action_callback=expand_action,
-    ignore_status=(),
-    *args,
-    **kwargs
-):
+    actions: Iterable[Any],
+    thread_count: int = 4,
+    chunk_size: int = 500,
+    max_chunk_bytes: int = 100 * 1024 * 1024,
+    queue_size: int = 4,
+    expand_action_callback: Callable[
+        [Any], Tuple[Dict[str, Any], Optional[Any]]
+    ] = expand_action,
+    ignore_status: Optional[Union[int, Collection[int]]] = (),
+    *args: Any,
+    **kwargs: Any
+) -> Generator[Tuple[bool, Any], None, None]:
     """
     Parallel version of the bulk helper run in multiple threads at once.
 
@@ -491,16 +516,16 @@ def parallel_bulk(
 
 def scan(
     client,
-    query=None,
-    scroll="5m",
-    raise_on_error=True,
-    preserve_order=False,
-    size=1000,
-    request_timeout=None,
-    clear_scroll=True,
-    scroll_kwargs=None,
-    **kwargs
-):
+    query: Optional[Any] = None,
+    scroll: str = "5m",
+    raise_on_error: bool = True,
+    preserve_order: bool = False,
+    size: int = 1000,
+    request_timeout: Optional[Union[float, int]] = None,
+    clear_scroll: bool = True,
+    scroll_kwargs: Optional[Mapping[str, Any]] = None,
+    **kwargs: Any
+) -> Generator[Any, None, None]:
     """
     Simple abstraction on top of the
     :meth:`~opensearchpy.OpenSearch.scroll` api - a simple iterator that
@@ -609,15 +634,15 @@ def scan(
 
 def reindex(
     client,
-    source_index,
-    target_index,
-    query=None,
+    source_index: Union[str, Collection[str]],
+    target_index: str,
+    query: Any = None,
     target_client=None,
-    chunk_size=500,
-    scroll="5m",
-    scan_kwargs={},
-    bulk_kwargs={},
-):
+    chunk_size: int = 500,
+    scroll: str = "5m",
+    scan_kwargs: Optional[Mapping[str, Any]] = {},
+    bulk_kwargs: Optional[Mapping[str, Any]] = {},
+) -> Tuple[int, Union[int, List[Any]]]:
     """
     Reindex all documents from one index that satisfy a given query
     to another, potentially (if `target_client` is specified) on a different cluster.

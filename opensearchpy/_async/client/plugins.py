@@ -9,13 +9,14 @@
 
 import warnings
 
+from ..client import AsyncOpenSearch
 from ..plugins.alerting import AlertingClient
 from ..plugins.index_management import IndexManagementClient
 from .utils import NamespacedClient
 
 
 class PluginsClient(NamespacedClient):
-    def __init__(self, client):
+    def __init__(self, client: AsyncOpenSearch) -> None:
         super(PluginsClient, self).__init__(client)
         # self.query_workbench = QueryWorkbenchClient(client)
         # self.reporting = ReportingClient(client)

@@ -29,6 +29,7 @@
 
 import os
 import time
+from typing import Any, Tuple
 from unittest import SkipTest, TestCase
 
 from opensearchpy import OpenSearch
@@ -40,7 +41,7 @@ else:
     OPENSEARCH_URL = "https://admin:admin@localhost:9200"
 
 
-def get_test_client(nowait=False, **kwargs):
+def get_test_client(nowait: bool = False, **kwargs: Any) -> OpenSearch:
     # construct kwargs from the environment
     kw = {"timeout": 30}
 
@@ -68,14 +69,14 @@ def get_test_client(nowait=False, **kwargs):
 
 class OpenSearchTestCase(TestCase):
     @staticmethod
-    def _get_client():
+    def _get_client() -> OpenSearch:
         return get_test_client()
 
     @classmethod
-    def setup_class(cls):
+    def setup_class(cls) -> None:
         cls.client = cls._get_client()
 
-    def teardown_method(self, _):
+    def teardown_method(self, _: Any) -> None:
         # Hidden indices expanded in wildcards in OpenSearch 7.7
         expand_wildcards = ["open", "closed"]
         if self.opensearch_version() >= (1, 0):
@@ -86,13 +87,13 @@ class OpenSearchTestCase(TestCase):
         )
         self.client.indices.delete_template(name="*", ignore=404)
 
-    def opensearch_version(self):
+    def opensearch_version(self) -> Tuple[int, ...]:
         if not hasattr(self, "_opensearch_version"):
             self._opensearch_version = opensearch_version(self.client)
         return self._opensearch_version
 
 
-def _get_version(version_string):
+def _get_version(version_string: str) -> Tuple[int, ...]:
     if "." not in version_string:
         return ()
     version = version_string.strip().split(".")

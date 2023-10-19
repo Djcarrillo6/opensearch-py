@@ -29,6 +29,7 @@
 from __future__ import unicode_literals
 
 import logging
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Type, Union
 
 from ..transport import Transport, TransportError
 from .cat import CatClient
@@ -179,7 +180,12 @@ class OpenSearch(object):
         list_all_point_in_time,
     )
 
-    def __init__(self, hosts=None, transport_class=Transport, **kwargs):
+    def __init__(
+        self,
+        hosts: Any = None,
+        transport_class: Type[Transport] = Transport,
+        **kwargs: Any
+    ):
         """
         :arg hosts: list of nodes, or a single node, we should connect to.
             Node should be a dictionary ({"host": "localhost", "port": 9200}),
@@ -207,12 +213,10 @@ class OpenSearch(object):
         self.security = SecurityClient(self)
         self.snapshot = SnapshotClient(self)
         self.tasks = TasksClient(self)
-
         self.features = FeaturesClient(self)
-
         self.plugins = PluginsClient(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         try:
             # get a list of all connections
             cons = self.transport.hosts
@@ -224,21 +228,36 @@ class OpenSearch(object):
             # probably operating on custom transport and connection_pool, ignore
             return super(OpenSearch, self).__repr__()
 
-    def __enter__(self):
+    def __enter__(self) -> "OpenSearch":
         if hasattr(self.transport, "_async_call"):
             self.transport._async_call()
         return self
 
-    def __exit__(self, *_):
+    def __exit__(self, *_) -> None:
         self.close()
 
-    def close(self):
+    def close(self) -> None:
         """Closes the Transport and all internal connections"""
         self.transport.close()
 
     # AUTO-GENERATED-API-DEFINITIONS #
     @query_params()
-    def ping(self, params=None, headers=None):
+    def ping(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns whether the cluster is running.
 
@@ -251,7 +270,22 @@ class OpenSearch(object):
             return False
 
     @query_params()
-    def info(self, params=None, headers=None):
+    def info(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns basic information about the cluster.
 
@@ -269,7 +303,32 @@ class OpenSearch(object):
         "version_type",
         "wait_for_active_shards",
     )
-    def create(self, index, id, body, params=None, headers=None):
+    def create(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        body: Any,
+        pipeline: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        timeout: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Creates a new document in the index.  Returns a 409 response when a document
         with a same ID already exists in the index.
@@ -318,7 +377,36 @@ class OpenSearch(object):
         "version_type",
         "wait_for_active_shards",
     )
-    def index(self, index, body, id=None, params=None, headers=None):
+    def index(
+        self,
+        index: Any,
+        *,
+        body: Any,
+        id: Optional[Any] = None,
+        if_primary_term: Optional[Any],
+        if_seq_no: Optional[Any],
+        op_type: Optional[Any],
+        pipeline: Optional[Any],
+        refresh: Optional[Any],
+        require_alias: Optional[Any],
+        routing: Optional[Any],
+        timeout: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or overwrites a document in an index.
 
@@ -379,7 +467,33 @@ class OpenSearch(object):
         "timeout",
         "wait_for_active_shards",
     )
-    def bulk(self, body, index=None, params=None, headers=None):
+    def bulk(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        pipeline: Optional[Any],
+        refresh: Optional[Any],
+        require_alias: Optional[Any],
+        routing: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to perform multiple index/update/delete operations in a single request.
 
@@ -423,7 +537,24 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def clear_scroll(self, body=None, scroll_id=None, params=None, headers=None):
+    def clear_scroll(
+        self,
+        *,
+        body: Optional[Any] = None,
+        scroll_id: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Explicitly clears the search context for a scroll.
 
@@ -459,7 +590,38 @@ class OpenSearch(object):
         "routing",
         "terminate_after",
     )
-    def count(self, body=None, index=None, params=None, headers=None):
+    def count(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_throttled: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        lenient: Optional[Any],
+        min_score: Optional[Any],
+        preference: Optional[Any],
+        q: Optional[Any],
+        routing: Optional[Any],
+        terminate_after: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns number of documents matching a query.
 
@@ -514,7 +676,32 @@ class OpenSearch(object):
         "version_type",
         "wait_for_active_shards",
     )
-    def delete(self, index, id, params=None, headers=None):
+    def delete(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        if_primary_term: Optional[Any],
+        if_seq_no: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        timeout: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Removes a document from the index.
 
@@ -587,7 +774,57 @@ class OpenSearch(object):
         "wait_for_active_shards",
         "wait_for_completion",
     )
-    def delete_by_query(self, index, body, params=None, headers=None):
+    def delete_by_query(
+        self,
+        index: Any,
+        *,
+        body: Any,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        allow_no_indices: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        conflicts: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        expand_wildcards: Optional[Any],
+        from_: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        lenient: Optional[Any],
+        max_docs: Optional[Any],
+        preference: Optional[Any],
+        q: Optional[Any],
+        refresh: Optional[Any],
+        request_cache: Optional[Any],
+        requests_per_second: Optional[Any],
+        routing: Optional[Any],
+        scroll: Optional[Any],
+        scroll_size: Optional[Any],
+        search_timeout: Optional[Any],
+        search_type: Optional[Any],
+        size: Optional[Any],
+        slices: Optional[Any],
+        sort: Optional[Any],
+        stats: Optional[Any],
+        terminate_after: Optional[Any],
+        timeout: Optional[Any],
+        version: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes documents matching the provided query.
 
@@ -680,7 +917,24 @@ class OpenSearch(object):
         )
 
     @query_params("requests_per_second")
-    def delete_by_query_rethrottle(self, task_id, params=None, headers=None):
+    def delete_by_query_rethrottle(
+        self,
+        task_id: Any,
+        *,
+        requests_per_second: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Changes the number of requests per second for a particular Delete By Query
         operation.
@@ -701,7 +955,26 @@ class OpenSearch(object):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def delete_script(self, id, params=None, headers=None):
+    def delete_script(
+        self,
+        id: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes a script.
 
@@ -730,7 +1003,34 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def exists(self, index, id, params=None, headers=None):
+    def exists(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        stored_fields: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a document exists in an index.
 
@@ -777,7 +1077,33 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def exists_source(self, index, id, params=None, headers=None):
+    def exists_source(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a document source exists in an index.
 
@@ -825,7 +1151,37 @@ class OpenSearch(object):
         "routing",
         "stored_fields",
     )
-    def explain(self, index, id, body=None, params=None, headers=None):
+    def explain(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        body: Optional[Any] = None,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        lenient: Optional[Any],
+        preference: Optional[Any],
+        q: Optional[Any],
+        routing: Optional[Any],
+        stored_fields: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about why a specific matches (or doesn't match) a query.
 
@@ -872,7 +1228,29 @@ class OpenSearch(object):
         "ignore_unavailable",
         "include_unmapped",
     )
-    def field_caps(self, body=None, index=None, params=None, headers=None):
+    def field_caps(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        fields: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        include_unmapped: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns the information about the capabilities of fields among multiple
         indices.
@@ -913,7 +1291,34 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def get(self, index, id, params=None, headers=None):
+    def get(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        stored_fields: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a document.
 
@@ -950,7 +1355,25 @@ class OpenSearch(object):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout")
-    def get_script(self, id, params=None, headers=None):
+    def get_script(
+        self,
+        id: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a script.
 
@@ -977,7 +1400,33 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def get_source(self, index, id, params=None, headers=None):
+    def get_source(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns the source of a document.
 
@@ -1021,7 +1470,32 @@ class OpenSearch(object):
         "routing",
         "stored_fields",
     )
-    def mget(self, body, index=None, params=None, headers=None):
+    def mget(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        refresh: Optional[Any],
+        routing: Optional[Any],
+        stored_fields: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to get multiple documents in one request.
 
@@ -1066,7 +1540,31 @@ class OpenSearch(object):
         "search_type",
         "typed_keys",
     )
-    def msearch(self, body, index=None, params=None, headers=None):
+    def msearch(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        ccs_minimize_roundtrips: Optional[Any],
+        max_concurrent_searches: Optional[Any],
+        max_concurrent_shard_requests: Optional[Any],
+        pre_filter_shard_size: Optional[Any],
+        rest_total_hits_as_int: Optional[Any],
+        search_type: Optional[Any],
+        typed_keys: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to execute several search operations in one request.
 
@@ -1117,7 +1615,29 @@ class OpenSearch(object):
         "search_type",
         "typed_keys",
     )
-    def msearch_template(self, body, index=None, params=None, headers=None):
+    def msearch_template(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        ccs_minimize_roundtrips: Optional[Any],
+        max_concurrent_searches: Optional[Any],
+        rest_total_hits_as_int: Optional[Any],
+        search_type: Optional[Any],
+        typed_keys: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to execute several search template operations in one request.
 
@@ -1164,7 +1684,36 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def mtermvectors(self, body=None, index=None, params=None, headers=None):
+    def mtermvectors(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        field_statistics: Optional[Any],
+        fields: Optional[Any],
+        ids: Optional[Any],
+        offsets: Optional[Any],
+        payloads: Optional[Any],
+        positions: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        routing: Optional[Any],
+        term_statistics: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns multiple termvectors in one request.
 
@@ -1212,7 +1761,28 @@ class OpenSearch(object):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def put_script(self, id, body, context=None, params=None, headers=None):
+    def put_script(
+        self,
+        id: Any,
+        *,
+        body: Any,
+        context: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or updates a script.
 
@@ -1239,7 +1809,28 @@ class OpenSearch(object):
     @query_params(
         "allow_no_indices", "expand_wildcards", "ignore_unavailable", "search_type"
     )
-    def rank_eval(self, body, index=None, params=None, headers=None):
+    def rank_eval(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        search_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to evaluate the quality of ranked search results over a set of typical
         search queries
@@ -1286,7 +1877,31 @@ class OpenSearch(object):
         "wait_for_active_shards",
         "wait_for_completion",
     )
-    def reindex(self, body, params=None, headers=None):
+    def reindex(
+        self,
+        *,
+        body: Any,
+        max_docs: Optional[Any],
+        refresh: Optional[Any],
+        requests_per_second: Optional[Any],
+        scroll: Optional[Any],
+        slices: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to copy documents from one index to another, optionally filtering the
         source documents by a query, changing the destination index settings, or
@@ -1323,7 +1938,24 @@ class OpenSearch(object):
         )
 
     @query_params("requests_per_second")
-    def reindex_rethrottle(self, task_id, params=None, headers=None):
+    def reindex_rethrottle(
+        self,
+        task_id: Any,
+        *,
+        requests_per_second: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Changes the number of requests per second for a particular Reindex operation.
 
@@ -1343,7 +1975,24 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def render_search_template(self, body=None, id=None, params=None, headers=None):
+    def render_search_template(
+        self,
+        *,
+        body: Optional[Any] = None,
+        id: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to use the Mustache language to pre-render a search definition.
 
@@ -1360,7 +2009,23 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def scripts_painless_execute(self, body=None, params=None, headers=None):
+    def scripts_painless_execute(
+        self,
+        *,
+        body: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows an arbitrary script to be executed and a result to be returned
 
@@ -1381,7 +2046,26 @@ class OpenSearch(object):
         )
 
     @query_params("rest_total_hits_as_int", "scroll")
-    def scroll(self, body=None, scroll_id=None, params=None, headers=None):
+    def scroll(
+        self,
+        *,
+        body: Optional[Any] = None,
+        scroll_id: Optional[Any] = None,
+        rest_total_hits_as_int: Optional[Any],
+        scroll: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to retrieve a large numbers of results from a single search request.
 
@@ -1450,7 +2134,67 @@ class OpenSearch(object):
         "typed_keys",
         "version",
     )
-    def search(self, body=None, index=None, params=None, headers=None):
+    def search(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        allow_no_indices: Optional[Any],
+        allow_partial_search_results: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        batched_reduce_size: Optional[Any],
+        ccs_minimize_roundtrips: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        docvalue_fields: Optional[Any],
+        expand_wildcards: Optional[Any],
+        explain: Optional[Any],
+        from_: Optional[Any],
+        ignore_throttled: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        lenient: Optional[Any],
+        max_concurrent_shard_requests: Optional[Any],
+        min_compatible_shard_node: Optional[Any],
+        pre_filter_shard_size: Optional[Any],
+        preference: Optional[Any],
+        q: Optional[Any],
+        request_cache: Optional[Any],
+        rest_total_hits_as_int: Optional[Any],
+        routing: Optional[Any],
+        scroll: Optional[Any],
+        search_type: Optional[Any],
+        seq_no_primary_term: Optional[Any],
+        size: Optional[Any],
+        sort: Optional[Any],
+        stats: Optional[Any],
+        stored_fields: Optional[Any],
+        suggest_field: Optional[Any],
+        suggest_mode: Optional[Any],
+        suggest_size: Optional[Any],
+        suggest_text: Optional[Any],
+        terminate_after: Optional[Any],
+        timeout: Optional[Any],
+        track_scores: Optional[Any],
+        track_total_hits: Optional[Any],
+        typed_keys: Optional[Any],
+        version: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns results matching a query.
 
@@ -1572,7 +2316,29 @@ class OpenSearch(object):
         "preference",
         "routing",
     )
-    def search_shards(self, index=None, params=None, headers=None):
+    def search_shards(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        local: Optional[Any],
+        preference: Optional[Any],
+        routing: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about the indices and shards that a search request would be
         executed against.
@@ -1613,7 +2379,37 @@ class OpenSearch(object):
         "search_type",
         "typed_keys",
     )
-    def search_template(self, body, index=None, params=None, headers=None):
+    def search_template(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        ccs_minimize_roundtrips: Optional[Any],
+        expand_wildcards: Optional[Any],
+        explain: Optional[Any],
+        ignore_throttled: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        preference: Optional[Any],
+        profile: Optional[Any],
+        rest_total_hits_as_int: Optional[Any],
+        routing: Optional[Any],
+        scroll: Optional[Any],
+        search_type: Optional[Any],
+        typed_keys: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows to use the Mustache language to pre-render a search definition.
 
@@ -1673,7 +2469,36 @@ class OpenSearch(object):
         "version",
         "version_type",
     )
-    def termvectors(self, index, body=None, id=None, params=None, headers=None):
+    def termvectors(
+        self,
+        index: Any,
+        *,
+        body: Optional[Any] = None,
+        id: Optional[Any] = None,
+        field_statistics: Optional[Any],
+        fields: Optional[Any],
+        offsets: Optional[Any],
+        payloads: Optional[Any],
+        positions: Optional[Any],
+        preference: Optional[Any],
+        realtime: Optional[Any],
+        routing: Optional[Any],
+        term_statistics: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information and statistics about terms in the fields of a particular
         document.
@@ -1728,7 +2553,37 @@ class OpenSearch(object):
         "timeout",
         "wait_for_active_shards",
     )
-    def update(self, index, id, body, params=None, headers=None):
+    def update(
+        self,
+        index: Any,
+        id: Any,
+        *,
+        body: Any,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        if_primary_term: Optional[Any],
+        if_seq_no: Optional[Any],
+        lang: Optional[Any],
+        refresh: Optional[Any],
+        require_alias: Optional[Any],
+        retry_on_conflict: Optional[Any],
+        routing: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates a document with a script or partial document.
 
@@ -1813,7 +2668,59 @@ class OpenSearch(object):
         "wait_for_active_shards",
         "wait_for_completion",
     )
-    def update_by_query(self, index, body=None, params=None, headers=None):
+    def update_by_query(
+        self,
+        index: Any,
+        *,
+        body: Optional[Any] = None,
+        _source: Optional[Any],
+        _source_excludes: Optional[Any],
+        _source_includes: Optional[Any],
+        allow_no_indices: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        conflicts: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        expand_wildcards: Optional[Any],
+        from_: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        lenient: Optional[Any],
+        max_docs: Optional[Any],
+        pipeline: Optional[Any],
+        preference: Optional[Any],
+        q: Optional[Any],
+        refresh: Optional[Any],
+        request_cache: Optional[Any],
+        requests_per_second: Optional[Any],
+        routing: Optional[Any],
+        scroll: Optional[Any],
+        scroll_size: Optional[Any],
+        search_timeout: Optional[Any],
+        search_type: Optional[Any],
+        size: Optional[Any],
+        slices: Optional[Any],
+        sort: Optional[Any],
+        stats: Optional[Any],
+        terminate_after: Optional[Any],
+        timeout: Optional[Any],
+        version: Optional[Any],
+        version_type: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs an update on every document in the index without changing the source,
         for example to pick up a mapping change.
@@ -1911,7 +2818,24 @@ class OpenSearch(object):
         )
 
     @query_params("requests_per_second")
-    def update_by_query_rethrottle(self, task_id, params=None, headers=None):
+    def update_by_query_rethrottle(
+        self,
+        task_id: Any,
+        *,
+        requests_per_second: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Changes the number of requests per second for a particular Update By Query
         operation.
@@ -1932,7 +2856,22 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def get_script_context(self, params=None, headers=None):
+    def get_script_context(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns all script contexts.
 
@@ -1947,7 +2886,22 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def get_script_languages(self, params=None, headers=None):
+    def get_script_languages(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns available script types, languages and contexts
 
@@ -1968,7 +2922,28 @@ class OpenSearch(object):
         "preference",
         "routing",
     )
-    def create_pit(self, index, params=None, headers=None):
+    def create_pit(
+        self,
+        index: Any,
+        *,
+        allow_partial_pit_creation: Optional[Any],
+        expand_wildcards: Optional[Any],
+        keep_alive: Optional[Any],
+        preference: Optional[Any],
+        routing: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates point in time context.
 
@@ -1996,7 +2971,22 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def delete_all_pits(self, params=None, headers=None):
+    def delete_all_pits(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes all active point in time searches.
 
@@ -2006,7 +2996,23 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def delete_pit(self, body=None, params=None, headers=None):
+    def delete_pit(
+        self,
+        *,
+        body: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes one or more point in time searches based on the IDs passed.
 
@@ -2022,7 +3028,22 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def get_all_pits(self, params=None, headers=None):
+    def get_all_pits(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Lists all active point in time searches.
         """
@@ -2031,7 +3052,24 @@ class OpenSearch(object):
         )
 
     @query_params()
-    def terms_enum(self, index, body=None, params=None, headers=None):
+    def terms_enum(
+        self,
+        index: Any,
+        *,
+        body: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         The terms enum API  can be used to discover terms in the index that begin with
         the provided string. It is designed for low-latency look-ups used in auto-

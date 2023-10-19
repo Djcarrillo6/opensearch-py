@@ -32,8 +32,14 @@ import logging
 import re
 import sys
 import warnings
+from typing import Tuple
 
 from ._version import __versionstr__
+
+VERSION: Tuple[int, int, int]
+__version__: Tuple[int, int, int]
+__versionstr__: str
+
 
 _major, _minor, _patch = [
     int(x) for x in re.search(r"^(\d+)\.(\d+)\.(\d+)", __versionstr__).groups()

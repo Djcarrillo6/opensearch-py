@@ -29,7 +29,9 @@ import asyncio
 import logging
 import sys
 from itertools import chain
+from typing import Any, Callable, Collection, Dict, Mapping, Optional, Type, Union
 
+from ..connection import Connection
 from ..connection_pool import ConnectionPool
 from ..exceptions import (
     ConnectionError,
@@ -37,7 +39,7 @@ from ..exceptions import (
     SerializationError,
     TransportError,
 )
-from ..serializer import JSONSerializer
+from ..serializer import JSONSerializer, Serializer
 from ..transport import Transport, get_host_info
 from .compat import get_running_loop
 from .http_aiohttp import AIOHttpConnection
@@ -53,27 +55,29 @@ class AsyncTransport(Transport):
     Main interface is the `perform_request` method.
     """
 
-    DEFAULT_CONNECTION_CLASS = AIOHttpConnection
+    DEFAULT_CONNECTION_CLASS: Type[Connection] = AIOHttpConnection
 
     def __init__(
         self,
-        hosts,
-        connection_class=None,
-        connection_pool_class=ConnectionPool,
-        host_info_callback=get_host_info,
-        sniff_on_start=False,
-        sniffer_timeout=None,
-        sniff_timeout=0.1,
-        sniff_on_connection_fail=False,
-        serializer=JSONSerializer(),
-        serializers=None,
-        default_mimetype="application/json",
-        max_retries=3,
-        retry_on_status=(502, 503, 504),
-        retry_on_timeout=False,
-        send_get_body_as="GET",
-        **kwargs
-    ):
+        hosts: Any,
+        connection_class: Optional[Type[Any]] = None,
+        connection_pool_class: Type[ConnectionPool] = ConnectionPool,
+        host_info_callback: Callable[
+            [Dict[str, Any], Dict[str, Any]], Optional[Dict[str, Any]]
+        ] = get_host_info,
+        sniff_on_start: bool = False,
+        sniffer_timeout: Optional[float] = None,
+        sniff_timeout: float = 0.1,
+        sniff_on_connection_fail: bool = False,
+        serializer: Serializer = JSONSerializer(),
+        serializers: Optional[Mapping[str, Serializer]] = None,
+        default_mimetype: str = "application/json",
+        max_retries: int = 3,
+        retry_on_status: Collection[int] = (502, 503, 504),
+        retry_on_timeout: bool = False,
+        send_get_body_as: str = "GET",
+        **kwargs: Any
+    ) -> None:
         """
         :arg hosts: list of dictionaries, each containing keyword arguments to
             create a `connection_class` instance
@@ -282,7 +286,7 @@ class AsyncTransport(Transport):
             for task in chain(done, tasks):
                 task.cancel()
 
-    async def sniff_hosts(self, initial=False):
+    async def sniff_hosts(self, initial: bool = False) -> None:
         """Either spawns a sniffing_task which does regular sniffing
         over time or does a single sniffing session and awaits the results.
         """
@@ -310,7 +314,7 @@ class AsyncTransport(Transport):
             if c not in self.connection_pool.connections:
                 await c.close()
 
-    def create_sniff_task(self, initial=False):
+    def create_sniff_task(self, initial: bool = False) -> None:
         """
         Initiate a sniffing task. Make sure we only have one sniff request
         running at any given time. If a finished sniffing request is around,
@@ -326,7 +330,7 @@ class AsyncTransport(Transport):
         if self.sniffing_task is None:
             self.sniffing_task = self.loop.create_task(self.sniff_hosts(initial))
 
-    def mark_dead(self, connection):
+    def mark_dead(self, connection: Connection) -> None:
         """
         Mark a connection as dead (failed) in the connection pool. If sniffing
         on failure is enabled this will initiate the sniffing process.
@@ -340,7 +344,14 @@ class AsyncTransport(Transport):
     def get_connection(self):
         return self.connection_pool.get_connection()
 
-    async def perform_request(self, method, url, headers=None, params=None, body=None):
+    async def perform_request(
+        self,
+        method: str,
+        url: str,
+        headers: Optional[Mapping[str, str]] = None,
+        params: Optional[Mapping[str, Any]] = None,
+        body: Optional[Any] = None,
+    ) -> Union[bool, Any]:
         """
         Perform the actual request. Retrieve a connection from the connection
         pool, pass all the information to its perform_request method and
@@ -424,7 +435,7 @@ class AsyncTransport(Transport):
                     )
                 return data
 
-    async def close(self):
+    async def close(self) -> None:
         """
         Explicitly closes connections
         """

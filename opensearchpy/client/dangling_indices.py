@@ -34,6 +34,7 @@
 # https://github.com/opensearch-project/opensearch-api-specification/blob/main/OpenSearch.openapi.json
 # -----------------------------------------------------
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
@@ -42,7 +43,27 @@ class DanglingIndicesClient(NamespacedClient):
     @query_params(
         "accept_data_loss", "cluster_manager_timeout", "master_timeout", "timeout"
     )
-    def delete_dangling_index(self, index_uuid, params=None, headers=None):
+    def delete_dangling_index(
+        self,
+        index_uuid: Any,
+        *,
+        accept_data_loss: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes the specified dangling index.
 
@@ -70,7 +91,27 @@ class DanglingIndicesClient(NamespacedClient):
     @query_params(
         "accept_data_loss", "cluster_manager_timeout", "master_timeout", "timeout"
     )
-    def import_dangling_index(self, index_uuid, params=None, headers=None):
+    def import_dangling_index(
+        self,
+        index_uuid: Any,
+        *,
+        accept_data_loss: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        master_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Imports the specified dangling index.
 
@@ -93,7 +134,22 @@ class DanglingIndicesClient(NamespacedClient):
         )
 
     @query_params()
-    def list_dangling_indices(self, params=None, headers=None):
+    def list_dangling_indices(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns all dangling indices.
 

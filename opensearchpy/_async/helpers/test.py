@@ -9,10 +9,15 @@
 
 import os
 import time
+from typing import Any
 from unittest import SkipTest
+
+from _typeshed import Incomplete
 
 from opensearchpy import AsyncOpenSearch
 from opensearchpy.exceptions import ConnectionError
+
+OPENSEARCH_URL: Incomplete
 
 if "OPENSEARCH_URL" in os.environ:
     OPENSEARCH_URL = os.environ["OPENSEARCH_URL"]
@@ -20,7 +25,7 @@ else:
     OPENSEARCH_URL = "https://admin:admin@localhost:9200"
 
 
-async def get_test_client(nowait=False, **kwargs):
+async def get_test_client(nowait: bool = False, **kwargs) -> Any:
     # construct kwargs from the environment
     kw = {"timeout": 30}
 

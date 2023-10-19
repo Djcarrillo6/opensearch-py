@@ -7,13 +7,16 @@
 # Modifications Copyright OpenSearch Contributors. See
 # GitHub history for details.
 
+from typing import Any, Union
 
 from ..client.utils import NamespacedClient, _make_path, query_params
 
 
 class AlertingClient(NamespacedClient):
     @query_params()
-    def search_monitor(self, body, params=None, headers=None):
+    def search_monitor(
+        self, body: Any, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Returns the search result for a monitor.
 
@@ -28,7 +31,9 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def get_monitor(self, monitor_id, params=None, headers=None):
+    def get_monitor(
+        self, monitor_id: Any, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Returns the details of a specific monitor.
 
@@ -42,7 +47,9 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params("dryrun")
-    def run_monitor(self, monitor_id, params=None, headers=None):
+    def run_monitor(
+        self, monitor_id: Any, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Runs/Executes a specific monitor.
 
@@ -57,7 +64,12 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def create_monitor(self, body=None, params=None, headers=None):
+    def create_monitor(
+        self,
+        body: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Creates a monitor with inputs, triggers, and actions.
 
@@ -72,7 +84,13 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def update_monitor(self, monitor_id, body=None, params=None, headers=None):
+    def update_monitor(
+        self,
+        monitor_id: Any,
+        body: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Updates a monitor's inputs, triggers, and actions.
 
@@ -88,7 +106,9 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def delete_monitor(self, monitor_id, params=None, headers=None):
+    def delete_monitor(
+        self, monitor_id: Any, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Deletes a specific monitor.
 
@@ -102,7 +122,12 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def get_destination(self, destination_id=None, params=None, headers=None):
+    def get_destination(
+        self,
+        destination_id: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Returns the details of a specific destination.
 
@@ -118,7 +143,12 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def create_destination(self, body=None, params=None, headers=None):
+    def create_destination(
+        self,
+        body: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Creates a destination for slack, mail, or custom-webhook.
 
@@ -133,7 +163,13 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def update_destination(self, destination_id, body=None, params=None, headers=None):
+    def update_destination(
+        self,
+        destination_id: Any,
+        body: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Updates a destination's inputs, triggers, and actions.
 
@@ -149,7 +185,9 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def delete_destination(self, destination_id, params=None, headers=None):
+    def delete_destination(
+        self, destination_id: Any, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Deletes a specific destination.
 
@@ -163,7 +201,9 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def get_alerts(self, params=None, headers=None):
+    def get_alerts(
+        self, params: Any | None = None, headers: Any | None = None
+    ) -> Union[bool, Any]:
         """
         Returns all alerts.
 
@@ -176,7 +216,13 @@ class AlertingClient(NamespacedClient):
         )
 
     @query_params()
-    def acknowledge_alert(self, monitor_id, body=None, params=None, headers=None):
+    def acknowledge_alert(
+        self,
+        monitor_id: Any,
+        body: Any | None = None,
+        params: Any | None = None,
+        headers: Any | None = None,
+    ) -> Union[bool, Any]:
         """
         Acknowledges an alert.
 

@@ -29,6 +29,7 @@ import asyncio
 import os
 import ssl
 import warnings
+from typing import Any, Collection, Mapping, Optional, Tuple, Union
 
 import urllib3  # type: ignore
 
@@ -55,14 +56,14 @@ class AsyncConnection(Connection):
 
     async def perform_request(
         self,
-        method,
-        url,
-        params=None,
-        body=None,
-        timeout=None,
-        ignore=(),
-        headers=None,
-    ):
+        method: str,
+        url: str,
+        params: Optional[Mapping[str, Any]] = None,
+        body: Optional[bytes] = None,
+        timeout: Optional[Union[int, float]] = None,
+        ignore: Collection[int] = (),
+        headers: Optional[Mapping[str, str]] = None,
+    ) -> Tuple[int, Mapping[str, str], str]:
         raise NotImplementedError()
 
     async def close(self):
@@ -72,28 +73,28 @@ class AsyncConnection(Connection):
 class AIOHttpConnection(AsyncConnection):
     def __init__(
         self,
-        host="localhost",
-        port=None,
-        url_prefix="",
-        timeout=10,
-        http_auth=None,
-        use_ssl=False,
-        verify_certs=VERIFY_CERTS_DEFAULT,
-        ssl_show_warn=SSL_SHOW_WARN_DEFAULT,
-        ca_certs=None,
-        client_cert=None,
-        client_key=None,
-        ssl_version=None,
-        ssl_assert_fingerprint=None,
-        maxsize=10,
-        headers=None,
-        ssl_context=None,
-        http_compress=None,
-        opaque_id=None,
-        loop=None,
-        trust_env=False,
-        **kwargs
-    ):
+        host: str = "localhost",
+        port: Optional[int] = None,
+        url_prefix: str = "",
+        timeout: int = 10,
+        http_auth: Optional[Any] = None,
+        use_ssl: bool = False,
+        verify_certs: bool = VERIFY_CERTS_DEFAULT,
+        ssl_show_warn: bool = SSL_SHOW_WARN_DEFAULT,
+        ca_certs: Optional[Any] = None,
+        client_cert: Optional[Any] = None,
+        client_key: Optional[Any] = None,
+        ssl_version: Optional[Any] = None,
+        ssl_assert_fingerprint: Optional[Any] = None,
+        maxsize: int = 10,
+        headers: Optional[Mapping[str, str]] = None,
+        ssl_context: Optional[Any] = None,
+        http_compress: Optional[bool] = None,
+        opaque_id: Optional[str] = None,
+        loop: Optional[asyncio.AbstractEventLoop] = None,
+        trust_env: bool = False,
+        **kwargs: Any
+    ) -> None:
         """
         Default connection class for ``AsyncOpenSearch`` using the `aiohttp` library and the http protocol.
 

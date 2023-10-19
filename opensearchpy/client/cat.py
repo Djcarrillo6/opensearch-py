@@ -34,13 +34,36 @@
 # https://github.com/opensearch-project/opensearch-api-specification/blob/main/OpenSearch.openapi.json
 # -----------------------------------------------------
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import NamespacedClient, _make_path, query_params
 
 
 class CatClient(NamespacedClient):
     @query_params("expand_wildcards", "format", "h", "help", "local", "s", "v")
-    def aliases(self, name=None, params=None, headers=None):
+    def aliases(
+        self,
+        *,
+        name: Optional[Any] = None,
+        expand_wildcards: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Shows information about currently configured aliases to indices including
         filter and routing infos.
@@ -75,7 +98,31 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def allocation(self, node_id=None, params=None, headers=None):
+    def allocation(
+        self,
+        *,
+        node_id: Optional[Any] = None,
+        bytes: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides a snapshot of how many shards are allocated to each data node and how
         much disk space they are using.
@@ -108,7 +155,27 @@ class CatClient(NamespacedClient):
         )
 
     @query_params("format", "h", "help", "s", "v")
-    def count(self, index=None, params=None, headers=None):
+    def count(
+        self,
+        *,
+        index: Optional[Any] = None,
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides quick access to the document count of the entire cluster, or
         individual indices.
@@ -129,7 +196,28 @@ class CatClient(NamespacedClient):
         )
 
     @query_params("format", "h", "help", "s", "time", "ts", "v")
-    def health(self, params=None, headers=None):
+    def health(
+        self,
+        *,
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        ts: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a concise representation of the cluster health.
 
@@ -150,7 +238,24 @@ class CatClient(NamespacedClient):
         )
 
     @query_params("help", "s")
-    def help(self, params=None, headers=None):
+    def help(
+        self,
+        *,
+        help: Optional[Any],
+        s: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns help for the Cat APIs.
 
@@ -179,7 +284,36 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def indices(self, index=None, params=None, headers=None):
+    def indices(
+        self,
+        *,
+        index: Optional[Any],
+        bytes: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        expand_wildcards: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        health: Optional[Any],
+        help: Optional[Any],
+        include_unloaded_segments: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        pri: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about indices: number of primaries and replicas, document
         counts, disk size, ...
@@ -231,7 +365,29 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def master(self, params=None, headers=None):
+    def master(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about the cluster-manager node.
 
@@ -270,7 +426,29 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def cluster_manager(self, params=None, headers=None):
+    def cluster_manager(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about the cluster-manager node.
 
@@ -307,7 +485,32 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def nodes(self, params=None, headers=None):
+    def nodes(
+        self,
+        *,
+        bytes: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        full_id: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns basic statistics about performance of cluster nodes.
 
@@ -341,7 +544,31 @@ class CatClient(NamespacedClient):
     @query_params(
         "active_only", "bytes", "detailed", "format", "h", "help", "s", "time", "v"
     )
-    def recovery(self, index=None, params=None, headers=None):
+    def recovery(
+        self,
+        *,
+        index: Optional[Any] = None,
+        active_only: Optional[Any],
+        bytes: Optional[Any],
+        detailed: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ):
         """
         Returns information about index shard recoveries, both on-going completed.
 
@@ -380,7 +607,32 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def shards(self, index=None, params=None, headers=None):
+    def shards(
+        self,
+        *,
+        index: Optional[Any] = None,
+        bytes: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides a detailed view of shard allocation on nodes.
 
@@ -420,7 +672,30 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def segments(self, index=None, params=None, headers=None):
+    def segments(
+        self,
+        *,
+        index: Optional[Any] = None,
+        bytes: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides low-level information about the segments in the shards of an index.
 
@@ -457,7 +732,30 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def pending_tasks(self, params=None, headers=None):
+    def pending_tasks(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns a concise representation of the cluster pending tasks.
 
@@ -494,7 +792,31 @@ class CatClient(NamespacedClient):
         "size",
         "v",
     )
-    def thread_pool(self, thread_pool_patterns=None, params=None, headers=None):
+    def thread_pool(
+        self,
+        *,
+        thread_pool_patterns: Optional[Any] = None,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        size: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns cluster-wide thread pool statistics per node. By default the active,
         queue and rejected statistics are returned for all thread pools.
@@ -526,7 +848,28 @@ class CatClient(NamespacedClient):
         )
 
     @query_params("bytes", "format", "h", "help", "s", "v")
-    def fielddata(self, fields=None, params=None, headers=None):
+    def fielddata(
+        self,
+        *,
+        fields: Optional[Any] = None,
+        bytes: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Shows how much heap memory is currently being used by fielddata on every data
         node in the cluster.
@@ -561,7 +904,29 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def plugins(self, params=None, headers=None):
+    def plugins(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about installed plugins across nodes node.
 
@@ -595,7 +960,29 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def nodeattrs(self, params=None, headers=None):
+    def nodeattrs(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about custom node attributes.
 
@@ -629,7 +1016,29 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def repositories(self, params=None, headers=None):
+    def repositories(
+        self,
+        *,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about snapshot repositories registered in the cluster.
 
@@ -664,7 +1073,31 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def snapshots(self, repository=None, params=None, headers=None):
+    def snapshots(
+        self,
+        *,
+        repository: Optional[Any] = None,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns all snapshots in a specific repository.
 
@@ -706,7 +1139,31 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def tasks(self, params=None, headers=None):
+    def tasks(
+        self,
+        *,
+        actions: Optional[Any],
+        detailed: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        nodes: Optional[Any],
+        parent_task_id: Optional[Any],
+        s: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about the tasks currently executing on one or more nodes in
         the cluster.
@@ -746,7 +1203,30 @@ class CatClient(NamespacedClient):
         "s",
         "v",
     )
-    def templates(self, name=None, params=None, headers=None):
+    def templates(
+        self,
+        *,
+        name: Optional[Any] = None,
+        cluster_manager_timeout: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        s: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about existing templates.
 
@@ -772,7 +1252,22 @@ class CatClient(NamespacedClient):
         )
 
     @query_params()
-    def all_pit_segments(self, params=None, headers=None):
+    def all_pit_segments(
+        self,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Lists all active point-in-time segments.
 
@@ -782,7 +1277,23 @@ class CatClient(NamespacedClient):
         )
 
     @query_params()
-    def pit_segments(self, body=None, params=None, headers=None):
+    def pit_segments(
+        self,
+        *,
+        body: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         List segments for one or several PITs.
 
@@ -806,7 +1317,33 @@ class CatClient(NamespacedClient):
         "time",
         "v",
     )
-    def segment_replication(self, index=None, params=None, headers=None):
+    def segment_replication(
+        self,
+        *,
+        index: Optional[Any] = None,
+        active_only: Optional[Any],
+        bytes: Optional[Any],
+        completed_only: Optional[Any],
+        detailed: Optional[Any],
+        format: Optional[Any],
+        h: Optional[Any],
+        help: Optional[Any],
+        s: Optional[Any],
+        shards: Optional[Any],
+        time: Optional[Any],
+        v: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about both on-going and latest completed Segment
         Replication events.

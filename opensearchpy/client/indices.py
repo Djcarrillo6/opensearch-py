@@ -24,13 +24,31 @@
 #  specific language governing permissions and limitations
 #  under the License.
 
+from typing import Any, Collection, MutableMapping, Optional, Tuple, Union
 
 from .utils import SKIP_IN_PATH, NamespacedClient, _make_path, query_params
 
 
 class IndicesClient(NamespacedClient):
     @query_params()
-    def analyze(self, body=None, index=None, params=None, headers=None):
+    def analyze(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs the analysis process on a text and return the tokens breakdown of the
         text.
@@ -49,7 +67,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable")
-    def refresh(self, index=None, params=None, headers=None):
+    def refresh(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs the refresh operation in one or more indices.
 
@@ -76,7 +113,28 @@ class IndicesClient(NamespacedClient):
         "ignore_unavailable",
         "wait_if_ongoing",
     )
-    def flush(self, index=None, params=None, headers=None):
+    def flush(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        force: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        wait_if_ongoing: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs the flush operation on one or more indices.
 
@@ -108,7 +166,28 @@ class IndicesClient(NamespacedClient):
     @query_params(
         "master_timeout", "cluster_manager_timeout", "timeout", "wait_for_active_shards"
     )
-    def create(self, index, body=None, params=None, headers=None):
+    def create(
+        self,
+        index: Any,
+        *,
+        body: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates an index with optional settings and mappings.
 
@@ -132,7 +211,29 @@ class IndicesClient(NamespacedClient):
     @query_params(
         "master_timeout", "cluster_manager_timeout", "timeout", "wait_for_active_shards"
     )
-    def clone(self, index, target, body=None, params=None, headers=None):
+    def clone(
+        self,
+        index: Any,
+        target: Any,
+        *,
+        body: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Clones an index
 
@@ -169,7 +270,31 @@ class IndicesClient(NamespacedClient):
         "master_timeout",
         "cluster_manager_timeout",
     )
-    def get(self, index, params=None, headers=None):
+    def get(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flat_settings: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        include_defaults: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about one or more indices.
 
@@ -207,7 +332,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def open(self, index, params=None, headers=None):
+    def open(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Opens an index.
 
@@ -243,7 +391,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def close(self, index, params=None, headers=None):
+    def close(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Closes an index.
 
@@ -280,7 +451,29 @@ class IndicesClient(NamespacedClient):
         "cluster_manager_timeout",
         "timeout",
     )
-    def delete(self, index, params=None, headers=None):
+    def delete(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Deletes an index.
 
@@ -313,7 +506,29 @@ class IndicesClient(NamespacedClient):
         "include_defaults",
         "local",
     )
-    def exists(self, index, params=None, headers=None):
+    def exists(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flat_settings: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        include_defaults: Optional[Any],
+        local: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a particular index exists.
 
@@ -349,7 +564,31 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "write_index_only",
     )
-    def put_mapping(self, body, index=None, params=None, headers=None):
+    def put_mapping(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        write_index_only: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates the index mappings.
 
@@ -394,7 +633,29 @@ class IndicesClient(NamespacedClient):
         "master_timeout",
         "cluster_manager_timeout",
     )
-    def get_mapping(self, index=None, params=None, headers=None):
+    def get_mapping(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns mappings for one or more indices.
 
@@ -427,7 +688,29 @@ class IndicesClient(NamespacedClient):
         "include_defaults",
         "local",
     )
-    def get_field_mapping(self, fields, index=None, params=None, headers=None):
+    def get_field_mapping(
+        self,
+        fields: Any,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        include_defaults: Optional[Any],
+        local: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns mapping for one or more fields.
 
@@ -458,7 +741,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def put_alias(self, index, name, body=None, params=None, headers=None):
+    def put_alias(
+        self,
+        index: Any,
+        name: Any,
+        *,
+        body: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or updates an alias.
 
@@ -486,7 +790,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable", "local")
-    def exists_alias(self, name, index=None, params=None, headers=None):
+    def exists_alias(
+        self,
+        name: Any,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        local: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a particular alias exists.
 
@@ -513,7 +838,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable", "local")
-    def get_alias(self, index=None, name=None, params=None, headers=None):
+    def get_alias(
+        self,
+        *,
+        index: Optional[Any] = None,
+        name: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        local: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns an alias.
 
@@ -537,7 +883,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def update_aliases(self, body, params=None, headers=None):
+    def update_aliases(
+        self,
+        *,
+        body: Any,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates index aliases.
 
@@ -555,7 +920,27 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def delete_alias(self, index, name, params=None, headers=None):
+    def delete_alias(
+        self,
+        index: Any,
+        name: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes an alias.
 
@@ -577,7 +962,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("create", "master_timeout", "cluster_manager_timeout", "order")
-    def put_template(self, name, body, params=None, headers=None):
+    def put_template(
+        self,
+        name: Any,
+        *,
+        body: Any,
+        create: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        order: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or updates an index template.
 
@@ -605,7 +1011,27 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "local", "master_timeout", "cluster_manager_timeout")
-    def exists_template(self, name, params=None, headers=None):
+    def exists_template(
+        self,
+        name: Any,
+        *,
+        flat_settings: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a particular index template exists.
 
@@ -628,7 +1054,27 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "local", "master_timeout", "cluster_manager_timeout")
-    def get_template(self, name=None, params=None, headers=None):
+    def get_template(
+        self,
+        *,
+        name: Optional[Any] = None,
+        flat_settings: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns an index template.
 
@@ -648,7 +1094,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def delete_template(self, name, params=None, headers=None):
+    def delete_template(
+        self,
+        name: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes an index template.
 
@@ -675,7 +1140,32 @@ class IndicesClient(NamespacedClient):
         "master_timeout",
         "cluster_manager_timeout",
     )
-    def get_settings(self, index=None, name=None, params=None, headers=None):
+    def get_settings(
+        self,
+        *,
+        index: Optional[Any] = None,
+        name: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flat_settings: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        include_defaults: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns settings for one or more indices.
 
@@ -714,7 +1204,32 @@ class IndicesClient(NamespacedClient):
         "preserve_existing",
         "timeout",
     )
-    def put_settings(self, body, index=None, params=None, headers=None):
+    def put_settings(
+        self,
+        *,
+        body: Any,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flat_settings: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        preserve_existing: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Updates the index settings.
 
@@ -762,7 +1277,34 @@ class IndicesClient(NamespacedClient):
         "level",
         "types",
     )
-    def stats(self, index=None, metric=None, params=None, headers=None):
+    def stats(
+        self,
+        *,
+        index: Optional[Any] = None,
+        metric: Optional[Any] = None,
+        completion_fields: Optional[Any],
+        expand_wildcards: Optional[Any],
+        fielddata_fields: Optional[Any],
+        fields: Optional[Any],
+        forbid_closed_indices: Optional[Any],
+        groups: Optional[Any],
+        include_segment_file_sizes: Optional[Any],
+        include_unloaded_segments: Optional[Any],
+        level: Optional[Any],
+        types: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides statistics on operations happening in an index.
 
@@ -805,7 +1347,27 @@ class IndicesClient(NamespacedClient):
     @query_params(
         "allow_no_indices", "expand_wildcards", "ignore_unavailable", "verbose"
     )
-    def segments(self, index=None, params=None, headers=None):
+    def segments(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        verbose: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Provides low-level information about segments in a Lucene index.
 
@@ -840,7 +1402,36 @@ class IndicesClient(NamespacedClient):
         "q",
         "rewrite",
     )
-    def validate_query(self, body=None, index=None, params=None, headers=None):
+    def validate_query(
+        self,
+        *,
+        body: Optional[Any] = None,
+        index: Optional[Any] = None,
+        all_shards: Optional[Any],
+        allow_no_indices: Optional[Any],
+        analyze_wildcard: Optional[Any],
+        analyzer: Optional[Any],
+        default_operator: Optional[Any],
+        df: Optional[Any],
+        expand_wildcards: Optional[Any],
+        explain: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        lenient: Optional[Any],
+        q: Optional[Any],
+        rewrite: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows a user to validate a potentially expensive query without executing it.
 
@@ -892,7 +1483,30 @@ class IndicesClient(NamespacedClient):
         "query",
         "request",
     )
-    def clear_cache(self, index=None, params=None, headers=None):
+    def clear_cache(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        fielddata: Optional[Any],
+        fields: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        query: Optional[Any],
+        request: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Clears all or specific caches for one or more indices.
 
@@ -918,7 +1532,25 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("active_only", "detailed")
-    def recovery(self, index=None, params=None, headers=None):
+    def recovery(
+        self,
+        *,
+        index: Optional[Any] = None,
+        active_only: Optional[Any],
+        detailed: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about ongoing index shard recoveries.
 
@@ -941,7 +1573,28 @@ class IndicesClient(NamespacedClient):
         "only_ancient_segments",
         "wait_for_completion",
     )
-    def upgrade(self, index=None, params=None, headers=None):
+    def upgrade(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        only_ancient_segments: Optional[Any],
+        wait_for_completion: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         DEPRECATED Upgrades to the current version of Lucene.
 
@@ -966,7 +1619,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable")
-    def get_upgrade(self, index=None, params=None, headers=None):
+    def get_upgrade(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         DEPRECATED Returns a progress status of current upgrade.
 
@@ -987,7 +1659,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable")
-    def flush_synced(self, index=None, params=None, headers=None):
+    def flush_synced(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs a synced flush operation on one or more indices. Synced flush is
         deprecated. Use flush instead
@@ -1014,7 +1705,27 @@ class IndicesClient(NamespacedClient):
     @query_params(
         "allow_no_indices", "expand_wildcards", "ignore_unavailable", "status"
     )
-    def shard_stores(self, index=None, params=None, headers=None):
+    def shard_stores(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        status: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Provides store information for shard copies of indices.
 
@@ -1045,7 +1756,29 @@ class IndicesClient(NamespacedClient):
         "max_num_segments",
         "only_expunge_deletes",
     )
-    def forcemerge(self, index=None, params=None, headers=None):
+    def forcemerge(
+        self,
+        *,
+        index: Optional[Any] = None,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flush: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        max_num_segments: Optional[Any],
+        only_expunge_deletes: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Performs the force merge operation on one or more indices.
 
@@ -1078,7 +1811,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def shrink(self, index, target, body=None, params=None, headers=None):
+    def shrink(
+        self,
+        index: Any,
+        target: Any,
+        *,
+        body: Optional[Any],
+        copy_settings: Optional[Any] = None,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None,
+    ) -> Any:
         """
         Allow to shrink an existing index into a new index with fewer primary shards.
 
@@ -1114,7 +1870,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def split(self, index, target, body=None, params=None, headers=None):
+    def split(
+        self,
+        index: Any,
+        target: Any,
+        *,
+        body: Optional[Any] = None,
+        copy_settings: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Allows you to split an existing index into a new index with more primary
         shards.
@@ -1151,7 +1930,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def rollover(self, alias, body=None, new_index=None, params=None, headers=None):
+    def rollover(
+        self,
+        alias: Any,
+        *,
+        body: Optional[Any] = None,
+        new_index: Optional[Any] = None,
+        dry_run: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Updates an alias to point to a new index when the existing index is considered
         to be too large or too old.
@@ -1191,7 +1993,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def freeze(self, index, params=None, headers=None):
+    def freeze(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Freezes an index. A frozen index has almost no overhead on the cluster (except
         for maintaining its metadata in memory) and is read-only.
@@ -1228,7 +2053,30 @@ class IndicesClient(NamespacedClient):
         "timeout",
         "wait_for_active_shards",
     )
-    def unfreeze(self, index, params=None, headers=None):
+    def unfreeze(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        wait_for_active_shards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Unfreezes an index. When a frozen index is unfrozen, the index goes through the
         normal recovery process and becomes writeable again.
@@ -1257,7 +2105,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("allow_no_indices", "expand_wildcards", "ignore_unavailable")
-    def reload_search_analyzers(self, index, params=None, headers=None):
+    def reload_search_analyzers(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Reloads an index's search analyzers and their resources.
 
@@ -1284,7 +2151,23 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params()
-    def create_data_stream(self, name, params=None, headers=None):
+    def create_data_stream(
+        self,
+        name: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates a data stream
 
@@ -1299,7 +2182,24 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("expand_wildcards")
-    def delete_data_stream(self, name, params=None, headers=None):
+    def delete_data_stream(
+        self,
+        name: Any,
+        *,
+        expand_wildcards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes a data stream.
 
@@ -1318,7 +2218,26 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("master_timeout", "cluster_manager_timeout", "timeout")
-    def delete_index_template(self, name, params=None, headers=None):
+    def delete_index_template(
+        self,
+        name: Any,
+        *,
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Deletes an index template.
 
@@ -1339,7 +2258,27 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "local", "master_timeout", "cluster_manager_timeout")
-    def exists_index_template(self, name, params=None, headers=None):
+    def exists_index_template(
+        self,
+        name: Any,
+        *,
+        flat_settings: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> bool:
         """
         Returns information about whether a particular index template exists.
 
@@ -1362,7 +2301,27 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("flat_settings", "local", "master_timeout", "cluster_manager_timeout")
-    def get_index_template(self, name=None, params=None, headers=None):
+    def get_index_template(
+        self,
+        *,
+        name: Optional[Any] = None,
+        flat_settings: Optional[Any],
+        local: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns an index template.
 
@@ -1382,7 +2341,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("cause", "create", "master_timeout", "cluster_manager_timeout")
-    def put_index_template(self, name, body, params=None, headers=None):
+    def put_index_template(
+        self,
+        name: Any,
+        *,
+        body: Any,
+        cause: Optional[Any],
+        create: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Creates or updates an index template.
 
@@ -1409,7 +2389,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("cause", "create", "master_timeout", "cluster_manager_timeout")
-    def simulate_index_template(self, name, body=None, params=None, headers=None):
+    def simulate_index_template(
+        self,
+        name: Any,
+        *,
+        body: Optional[Any] = None,
+        cause: Optional[Any],
+        create: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Simulate matching the given index name against the index templates in the
         system
@@ -1439,7 +2440,24 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("expand_wildcards")
-    def get_data_stream(self, name=None, params=None, headers=None):
+    def get_data_stream(
+        self,
+        *,
+        name: Optional[Any] = None,
+        expand_wildcards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns data streams.
 
@@ -1455,7 +2473,28 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("cause", "create", "master_timeout", "cluster_manager_timeout")
-    def simulate_template(self, body=None, name=None, params=None, headers=None):
+    def simulate_template(
+        self,
+        *,
+        body: Optional[Any] = None,
+        name: Optional[Any] = None,
+        cause: Optional[Any],
+        create: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Simulate resolving the given template name or body
 
@@ -1480,7 +2519,24 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params("expand_wildcards")
-    def resolve_index(self, name, params=None, headers=None):
+    def resolve_index(
+        self,
+        name: Any,
+        *,
+        expand_wildcards: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns information about any matching indices, aliases, and data streams
 
@@ -1511,7 +2567,30 @@ class IndicesClient(NamespacedClient):
         "cluster_manager_timeout",
         "timeout",
     )
-    def add_block(self, index, block, params=None, headers=None):
+    def add_block(
+        self,
+        index: Any,
+        block: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        master_timeout: Optional[Any],
+        cluster_manager_timeout: Optional[Any],
+        timeout: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Adds a block to an index.
 
@@ -1540,7 +2619,23 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params()
-    def data_streams_stats(self, name=None, params=None, headers=None):
+    def data_streams_stats(
+        self,
+        *,
+        name: Optional[Any] = None,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Provides statistics on operations happening in a data stream.
 
@@ -1556,7 +2651,23 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params()
-    def promote_data_stream(self, name, params=None, headers=None):
+    def promote_data_stream(
+        self,
+        name: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Promotes a data stream from a replicated data stream managed by CCR to a
         regular data stream
@@ -1575,7 +2686,23 @@ class IndicesClient(NamespacedClient):
         )
 
     @query_params()
-    def migrate_to_data_stream(self, name, params=None, headers=None):
+    def migrate_to_data_stream(
+        self,
+        name: Any,
+        *,
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Migrates an alias to a data stream
 
@@ -1599,7 +2726,28 @@ class IndicesClient(NamespacedClient):
         "ignore_unavailable",
         "run_expensive_tasks",
     )
-    def disk_usage(self, index, params=None, headers=None):
+    def disk_usage(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        flush: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        run_expensive_tasks: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Analyzes the disk usage of each field of an index or data stream
 
@@ -1634,7 +2782,27 @@ class IndicesClient(NamespacedClient):
     @query_params(
         "allow_no_indices", "expand_wildcards", "fields", "ignore_unavailable"
     )
-    def field_usage_stats(self, index, params=None, headers=None):
+    def field_usage_stats(
+        self,
+        index: Any,
+        *,
+        allow_no_indices: Optional[Any],
+        expand_wildcards: Optional[Any],
+        fields: Optional[Any],
+        ignore_unavailable: Optional[Any],
+        pretty: Optional[bool],
+        human: Optional[bool],
+        error_trace: Optional[bool],
+        format: Optional[str],
+        filter_path: Optional[Union[str, Collection[str]]],
+        request_timeout: Optional[Union[int, float]],
+        ignore: Optional[Union[int, Collection[int]]],
+        opaque_id: Optional[str],
+        http_auth: Optional[Union[str, Tuple[str, str]]],
+        api_key: Optional[Union[str, Tuple[str, str]]],
+        params: Optional[MutableMapping[str, Any]] = None,
+        headers: Optional[MutableMapping[str, str]] = None
+    ) -> Any:
         """
         Returns the field usage stats for each field of an index
 

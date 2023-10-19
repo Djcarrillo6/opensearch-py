@@ -31,14 +31,32 @@ import base64
 import weakref
 from datetime import date, datetime
 from functools import wraps
+from typing import (
+    Any,
+    Callable,
+    Collection,
+    Dict,
+    List,
+    Optional,
+    Tuple,
+    TypeVar,
+    Union,
+)
 
+from ..client import OpenSearch
 from ..compat import PY2, quote, string_types, to_bytes, to_str, unquote, urlparse
+from ..serializer import Serializer
+from ..transport import Transport
+
+T = TypeVar("T")
 
 # parts of URL to be omitted
 SKIP_IN_PATH = (None, "", b"", [], ())
 
 
-def _normalize_hosts(hosts):
+def _normalize_hosts(
+    hosts: Optional[Union[str, Collection[Union[str, Dict[str, Any]]]]]
+) -> List[Dict[str, Any]]:
     """
     Helper function to transform hosts argument to
     :class:`~opensearchpy.OpenSearch` to a list of dicts.
@@ -83,7 +101,7 @@ def _normalize_hosts(hosts):
     return out
 
 
-def _escape(value):
+def _escape(value: Any) -> str:
     """
     Escape a single value of a URL string or a query parameter. If it is a list
     or tuple, turn it into a comma-separated string first.
@@ -115,7 +133,7 @@ def _escape(value):
     return str(value)
 
 
-def _make_path(*parts):
+def _make_path(*parts: Any) -> str:
     """
     Create a URL string from parts, omit all `None` values and empty strings.
     Convert lists and tuples to comma separated values.
@@ -130,10 +148,12 @@ def _make_path(*parts):
 
 
 # parameters that apply to all methods
-GLOBAL_PARAMS = ("pretty", "human", "error_trace", "format", "filter_path")
+GLOBAL_PARAMS: Tuple[str] = ("pretty", "human", "error_trace", "format", "filter_path")
 
 
-def query_params(*opensearch_query_params):
+def query_params(
+    *opensearch_query_params: str,
+) -> Callable[[Callable[..., T]], Callable[..., T]]:
     """
     Decorator that pops all accepted parameters from method's kwargs and puts
     them in the params argument.
@@ -183,7 +203,7 @@ def query_params(*opensearch_query_params):
     return _wrapper
 
 
-def _bulk_body(serializer, body):
+def _bulk_body(serializer: Serializer, body: Union[str, bytes, Collection[Any]]) -> str:
     # if not passed in a string, serialize items and join by newline
     if not isinstance(body, string_types):
         body = "\n".join(map(serializer.dumps, body))
@@ -209,11 +229,11 @@ def _base64_auth_header(auth_value):
 
 
 class NamespacedClient(object):
-    def __init__(self, client):
+    def __init__(self, client: OpenSearch) -> None:
         self.client = client
 
     @property
-    def transport(self):
+    def transport(self) -> Transport:
         return self.client.transport
 
 

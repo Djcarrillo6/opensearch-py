@@ -13,6 +13,7 @@ import asyncio
 import os
 import ssl
 import warnings
+from typing import Any, Mapping, Optional
 
 from .._async._extra_imports import aiohttp, aiohttp_exceptions
 from .._async.compat import get_running_loop
@@ -32,25 +33,25 @@ SSL_SHOW_WARN_DEFAULT = object()
 class AsyncHttpConnection(AIOHttpConnection):
     def __init__(
         self,
-        host="localhost",
-        port=None,
-        http_auth=None,
-        use_ssl=False,
-        verify_certs=VERIFY_CERTS_DEFAULT,
-        ssl_show_warn=SSL_SHOW_WARN_DEFAULT,
-        ca_certs=None,
-        client_cert=None,
-        client_key=None,
-        ssl_version=None,
-        ssl_assert_fingerprint=None,
-        maxsize=10,
-        headers=None,
-        ssl_context=None,
-        http_compress=None,
-        opaque_id=None,
-        loop=None,
-        **kwargs
-    ):
+        host: str = "localhost",
+        port: Optional[int] = None,
+        http_auth: Optional[Any] = None,
+        use_ssl: bool = False,
+        verify_certs: bool = VERIFY_CERTS_DEFAULT,
+        ssl_show_warn: bool = SSL_SHOW_WARN_DEFAULT,
+        ca_certs: Optional[Any] = None,
+        client_cert: Optional[Any] = None,
+        client_key: Optional[Any] = None,
+        ssl_version: Optional[Any] = None,
+        ssl_assert_fingerprint: Optional[Any] = None,
+        maxsize: Optional[int] = 10,
+        headers: Optional[Mapping[str, str]] = None,
+        ssl_context: Optional[Any] = None,
+        http_compress: Optional[bool] = None,
+        opaque_id: Optional[str] = None,
+        loop: Optional[Any] = None,
+        **kwargs: Any
+    ) -> None:
         self.headers = {}
 
         super().__init__(
